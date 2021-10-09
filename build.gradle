@@ -6,8 +6,17 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+
+        //this line is essential for navigation dependencies
+        def nav_version = "2.3.0-alpha01"
+
         classpath "com.android.tools.build:gradle:4.2.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+
+        //navigation safe-args dependency (this is essential for the navdirection navigation direction), don't forget the apply plugin statement in the other gradle app file
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${nav_version}"
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
