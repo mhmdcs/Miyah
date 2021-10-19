@@ -2,10 +2,13 @@
 buildscript {
     ext.kotlin_version = "1.4.31"
     repositories {
-        google()
+        google()  // Google's Maven repository
         mavenCentral()
     }
     dependencies {
+
+        //google services plugin to load the google-services.json Firebase file
+        classpath 'com.google.gms:google-services:4.3.10'
 
         //this line is essential for navigation dependencies
         def nav_version = "2.3.0-alpha01"
@@ -25,7 +28,7 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
+        google()  // Google's Maven repository
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
     }

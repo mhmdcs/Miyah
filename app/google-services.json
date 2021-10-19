@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "929061530786",
+    "firebase_url": "https://miyahapptest-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "miyahapptest",
+    "storage_bucket": "miyahapptest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929061530786:android:e0f8caec0b1e11f88cfbfb",
+        "android_client_info": {
+          "package_name": "com.example.miyah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929061530786-qb9iiudbu5dnhrs8jlgs9ls2ajmel3qt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTjc-vU7wNdSxy7Q0o5_UbBRb1o80jcL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929061530786-qb9iiudbu5dnhrs8jlgs9ls2ajmel3qt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
