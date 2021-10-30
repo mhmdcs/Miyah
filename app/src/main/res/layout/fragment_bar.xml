@@ -38,11 +38,11 @@
 
 
         <Button
-            android:id="@+id/ok_btn"
+            android:id="@+id/launch_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@android:string/ok"
+            android:text="Launch"
             app:layout_constraintEnd_toEndOf="@+id/imgData"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="@+id/imgData"

@@ -19,6 +19,13 @@ class BarFragment : Fragment() {
 
     private lateinit var binding: FragmentBarBinding
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,24 +42,26 @@ class BarFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_bar, container, false)
 
         var statusFb: Int //status Firebase
-        var status: Int
-        var max: String
-        var maxI = 0
+        var status: Int //status in displayed percentage format
+        var max: String //maximum in String
+        var maxI: Int //maximum in Integer (converted)
         var statusDepth: Int
 
-        val sData: DatabaseReference = FirebaseDatabase.getInstance().reference
+        val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().reference //instance of the firebase database reference
         val sensorData: TextView = binding.textViewProgress
         val imgDat: ImageView = binding.imgData
-        val tank: EditText = binding.tankDepth
-        val ok: Button = binding.okBtn
+        val tankDepth: EditText = binding.tankDepth
+        val launch: Button = binding.launchBtn
 
-        ok.setOnClickListener {
-            max = tank.text.toString()
+        launch.setOnClickListener {
+            max = tankDepth.text.toString()
             maxI = max.toInt()
 
             //define ValueEventListener to decide what happens when the data changes
-            sData.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
+            databaseRef.addValueEventListener(object : ValueEventListener {
+
+                //onDataChange method is called every time the data is changed
+                override fun onDataChange(dataSnapshot: DataSnapshot) { //fetch data using dataSnapshot object
                     statusFb = dataSnapshot.child("distance").value.toString()
                         .toInt() //get the necessary value from the database and parse it to integer, this is  the actual value of the water level
                     statusDepth =
