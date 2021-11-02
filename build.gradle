@@ -6,6 +6,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        classpath 'com.google.gms:google-services:4.3.10'
+
         //this line is essential for navigation dependencies
         def nav_version = "2.3.0-alpha01"
 

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.gms.google-services'
 }
 
 
@@ -43,6 +44,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.2'
+
 
     //this line is essential for navigation dependencies
     def nav_version = "2.3.0-alpha01"
