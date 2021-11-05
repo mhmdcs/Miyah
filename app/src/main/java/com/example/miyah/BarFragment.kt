@@ -36,19 +36,68 @@ class BarFragment : Fragment() {
             container,
             false)
 
-        var status: String
-        database = FirebaseDatabase.getInstance().reference
+        var statusFb: Int //status Firebase
+        var status: Int //status in displayed percentage format
+        var max: Int //maximum in Integer (converted)
+        var statusDepth: Int
 
-        database.addValueEventListener(object: ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-            status = snapshot.child("distances").value.toString()
-                binding.textWaterPercentage.text = status
-            }
+        val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().reference //instance of the firebase database reference
+        val sensorData: TextView = binding.textWaterPercentage
+        val imgDat: ImageView = binding.imgWaterLevel
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "Failed to read value.", error.toException())
-            }
-        })
+            max = 20
+
+            //define ValueEventListener to decide what happens when the data changes
+            databaseRef.addValueEventListener(object : ValueEventListener {
+
+                //onDataChange method is called every time the data is changed
+                override fun onDataChange(dataSnapshot: DataSnapshot) { //fetch data using dataSnapshot object
+                    statusFb = dataSnapshot.child("distance").value.toString()
+                        .toInt() //get the necessary value from the database and parse it to integer, this is  the actual value of the water level
+                    statusDepth =
+                        max - statusFb //"max" is the sensor value of the (empty) tank is, meaning it's level 0
+                    status =
+                        (statusDepth.toDouble() / max.toDouble() * 100).toInt() //water level percentage calculation
+
+                    sensorData.text =
+                        Integer.toString(status) + " %" //parse the value to string to display it in the sensorData percentage
+
+                    //change ImageViews based on changes in the water level percentage
+                    if (status >= 95 && status <= 100) {
+                        imgDat.setImageResource(R.drawable.i100)
+                    } else if (status >= 90 && status < 95) {
+                        imgDat.setImageResource(R.drawable.i95)
+                    } else if (status >= 80 && status < 90) {
+                        imgDat.setImageResource(R.drawable.i90)
+                    } else if (status >= 70 && status < 80) {
+                        imgDat.setImageResource(R.drawable.i80)
+                    } else if (status >= 55 && status < 70) {
+                        imgDat.setImageResource(R.drawable.i70)
+                    } else if (status >= 50 && status < 55) {
+                        imgDat.setImageResource(R.drawable.i55)
+                    } else if (status >= 40 && status < 50) {
+                        imgDat.setImageResource(R.drawable.i50)
+                    } else if (status >= 30 && status < 40) {
+                        imgDat.setImageResource(R.drawable.i40)
+                    } else if (status >= 20 && status < 30) {
+                        imgDat.setImageResource(R.drawable.i30)
+                    } else if (status >= 15 && status < 20) {
+                        imgDat.setImageResource(R.drawable.i20)
+                    } else if (status >= 10 && status < 15) {
+                        imgDat.setImageResource(R.drawable.i15)
+                    } else if (status > 0 && status < 10) {
+                        imgDat.setImageResource(R.drawable.i10)
+                    } else if (status < 0) {
+                        imgDat.setImageResource(R.drawable.i0)
+                        sensorData.text = ""
+                    } else {
+                        imgDat.setImageResource(R.drawable.i0)
+                        sensorData.text = ""
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {}
+            })
 
         return binding.root
     }
