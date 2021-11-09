@@ -6,10 +6,8 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -18,6 +16,8 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.setContentView
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.miyah.databinding.FragmentBarBinding
 import com.example.miyah.utils.sendNotification
 import com.google.firebase.database.*
@@ -171,4 +171,18 @@ class BarFragment : Fragment() {
         }
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.overflow_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    //when menu item is selected, the fragments onOptionItemSelected method will be called
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        //if the NavigationUI doesn't handle the selection, we will call super.onOptionsItemSelected
+        //with the menu item to allow the app to directly handle the menu item without navigating
+        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                || super.onOptionsItemSelected(item)
+    }
 }
