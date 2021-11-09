@@ -69,6 +69,27 @@ class BarFragment : Fragment() {
                     sensorData.text =
                         Integer.toString(status) + " %" //parse the value to string to display it in the sensorData percentage
 
+                    //Using Kotlin's when statement
+//                    when{
+//                        status >= 95 && status <= 100 -> imgDat.setImageResource(R.drawable.i100)
+//                        status >= 90 && status < 95 -> imgDat.setImageResource(R.drawable.i95)
+//                        status >= 80 && status < 90 -> imgDat.setImageResource(R.drawable.i90)
+//                        status >= 70 && status < 80 -> imgDat.setImageResource(R.drawable.i80)
+//                        status >= 55 && status < 70 -> imgDat.setImageResource(R.drawable.i70)
+//                        status >= 50 && status < 55 -> imgDat.setImageResource(R.drawable.i55)
+//                        status >= 40 && status < 50 -> imgDat.setImageResource(R.drawable.i50)
+//                        status >= 30 && status < 40 -> imgDat.setImageResource(R.drawable.i40)
+//                        status >= 20 && status < 30 -> imgDat.setImageResource(R.drawable.i30)
+//                        status >= 15 && status < 20 -> imgDat.setImageResource(R.drawable.i20)
+//                        status >= 10 && status < 15 -> {imgDat.setImageResource(R.drawable.i15)
+//                                val notificationManager = ContextCompat.getSystemService(
+//                                app, NotificationManager::class.java) as NotificationManager
+//                                notificationManager.sendNotification(app.getString(R.string.notification_text), app)}
+//                        status > 0 && status < 10 -> imgDat.setImageResource(R.drawable.i10)
+//                        status < 0 -> imgDat.setImageResource(R.drawable.i0)
+//                              else -> imgDat.setImageResource(R.drawable.i0)
+//                    }
+
                     //change ImageViews based on changes in the water level percentage
                     if (status >= 95 && status <= 100) {
                         imgDat.setImageResource(R.drawable.i100)

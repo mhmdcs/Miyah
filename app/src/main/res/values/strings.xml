@@ -6,6 +6,7 @@
     <string name="phoneHint">Phone Number</string>
     <string name="passwordHint">Password</string>
     <string name="confirmPasswordHint">Confirm Password</string>
+    <string name="nameHint">Name</string>
     <string name="SignIn">Sign In</string>
     <string name="SignUp">Sign Up</string>
     <string name="Welcome">Welcome</string>
