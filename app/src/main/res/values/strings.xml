@@ -12,4 +12,10 @@
     <string name="Enter">Enter</string>
     <string name="Next">Next</string>
     <string name="Logout">Logout</string>
+
+    <string name="notification_title">Miyah Water Tank</string>
+    <string name="notification_text">Your tank is running low on water!</string>
+    <string name="water_tank_notification_channel_id" translatable="false">water_tank_channel</string>
+    <string name="water_tank_notification_channel_name" translatable="true">Water Tank</string>
+
 </resources>
