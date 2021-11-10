@@ -87,19 +87,20 @@
             app:layout_constraintTop_toBottomOf="@+id/phoneEditTextSignup" />
 
         <RadioGroup
-            android:id="@+id/rbtnGroupSignUp"
+            android:id="@+id/radioGroupSignUp"
             android:layout_marginBottom="120dp"
             app:layout_constraintTop_toBottomOf="@id/passwordEditTextSignup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/signUpButton"
             android:layout_width="wrap_content"
+            android:checkedButton="@id/radioClient"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rbtnClient"
+                android:id="@+id/radioClient"
                 android:text="Client"
                 android:textColor="@color/dark_blue"
                 android:textSize="20sp"
@@ -107,7 +108,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rbtnServiceProvider"
+                android:id="@+id/radioServiceProvider"
                 android:text="Service Provider"
                 android:textColor="@color/dark_blue"
                 android:textSize="20sp"/>

@@ -56,8 +56,6 @@ class SignupFragment : Fragment() {
         val name = binding.nameEditTextSignup.text.toString().trim()
         val phone = binding.phoneEditTextSignup.text.toString().trim()
         val password = binding.passwordEditTextSignup.text.toString().trim()
-        var radioButtonGroup = binding.rbtnGroupSignUp.checkedRadioButtonId
-
 
         //perform validations
 
@@ -106,7 +104,7 @@ class SignupFragment : Fragment() {
                 //check if task (user registration) has been completed and successful
                 override fun onComplete(task: Task<AuthResult>) {
                     if(task.isSuccessful){
-                        val user = User(email, name, phone) //create an object of User
+                        val user = User(email, name, phone, userType()) //create an object of User
 
                         //send the user object to the realtime database by getting the current user ID and passing it the user object
                         FirebaseAuth.getInstance().currentUser?.let {
@@ -134,6 +132,16 @@ class SignupFragment : Fragment() {
             })
         }
 
+    }
+
+    private fun userType(): String {
+        val radioGroup = binding.radioGroupSignUp
+        val radioClient = binding.radioClient
+        val radioProvider = binding.radioServiceProvider
+        if (radioGroup.checkedRadioButtonId ==radioClient.id){
+        return radioClient.text.toString()
+        }
+        else return radioProvider.text.toString()
     }
 
 }
