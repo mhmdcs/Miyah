@@ -23,6 +23,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_loginFragment_to_providerFragment"
+            app:destination="@id/providerFragment" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_signup"
@@ -36,10 +39,18 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_signupFragment_to_providerFragment"
+            app:destination="@id/providerFragment" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_bar"
         android:id="@+id/barFragment"
         android:name="com.example.miyah.BarFragment"
         android:label="BarFragment" />
+    <fragment
+        tools:layout="@layout/fragment_provider"
+        android:id="@+id/providerFragment"
+        android:name="com.example.miyah.ProviderFragment"
+        android:label="ProviderFragment" />
 </navigation>
