@@ -56,11 +56,14 @@ class SignupFragment : Fragment() {
 
     private fun registerUser(): Boolean {
         var bool = false
-        var email = binding.emailEditTextSignup.text.toString().trim()
-        var name = binding.nameEditTextSignup.text.toString().trim()
-        var phone = binding.phoneEditTextSignup.text.toString().trim()
-        var password = binding.passwordEditTextSignup.text.toString().trim()
+        val email = binding.emailEditTextSignup.text.toString().trim() //good practice to trim whitespace
+        val name = binding.nameEditTextSignup.text.toString().trim()
+        val phone = binding.phoneEditTextSignup.text.toString().trim()
+        val password = binding.passwordEditTextSignup.text.toString().trim()
         var radioButtonGroup = binding.rbtnGroupSignUp.checkedRadioButtonId
+
+
+        //perform validations
 
         if(name.isEmpty()){
             binding.nameEditTextSignup.error = "Name is required!"
@@ -98,8 +101,7 @@ class SignupFragment : Fragment() {
         }
 
         else {
-            bool = true
-        }
+        //write user data to the realtime database
 
         binding.statusLoadingWheel.isVisible
         auth.createUserWithEmailAndPassword(email, password)
@@ -115,24 +117,28 @@ class SignupFragment : Fragment() {
                             FirebaseDatabase.getInstance().getReference("Users")
                                 .child(it.uid)
                                 .setValue(user).addOnCompleteListener{
+                                    //good practice to run addOnCompleteListener to check if the operation succeeded or failed
+
                                     if(it.isSuccessful){
                                         Toast.makeText(activity,"Successful registration",Toast.LENGTH_SHORT).show()
-                                        binding.statusLoadingWheel.isGone
                                         bool = true
+                                        binding.statusLoadingWheel.isGone
                                     } else {
                                         Toast.makeText(activity,"Failure to register",Toast.LENGTH_SHORT).show()
+                                        bool = false
                                         binding.statusLoadingWheel.isGone
                                     }
                                 }
                         }
                     } else {
                         Toast.makeText(activity,"Failure to register",Toast.LENGTH_SHORT).show()
+                        bool = false
                         binding.statusLoadingWheel.isGone
                     }
                 }
 
-
             })
+        }
 
         return bool
 
