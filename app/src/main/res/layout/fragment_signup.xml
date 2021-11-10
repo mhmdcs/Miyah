@@ -9,11 +9,22 @@
         android:layout_height="match_parent"
         tools:context=".SignupFragment">
 
+        <ImageView
+            android:id="@+id/miyahImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/appTitle2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/miyah_logo" />
+
         <TextView
             android:id="@+id/appTitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="120dp"
             android:text="Miyah"
             android:textAlignment="center"
             android:textColor="@color/dark_blue"
@@ -26,7 +37,7 @@
             android:id="@+id/emailEditTextSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="24dp"
             android:ems="10"
             android:freezesText="false"
             android:hint="@string/emailHint"
