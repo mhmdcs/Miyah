@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/emailEditText2"
+            android:id="@+id/emailEditTextSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
@@ -36,7 +36,7 @@
             app:layout_constraintTop_toBottomOf="@+id/appTitle2" />
 
         <EditText
-            android:id="@+id/nameEditText2"
+            android:id="@+id/nameEditTextSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -47,23 +47,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailEditText2" />
+            app:layout_constraintTop_toBottomOf="@+id/emailEditTextSignup" />
 
         <EditText
-            android:id="@+id/phoneEditText2"
+            android:id="@+id/phoneEditTextSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:ems="10"
             android:hint="@string/phoneHint"
-            android:inputType="numberPassword"
+            android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameEditText2" />
+            app:layout_constraintTop_toBottomOf="@+id/nameEditTextSignup" />
 
         <EditText
-            android:id="@+id/confirmPasswordEditText2"
+            android:id="@+id/passwordEditTextSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -73,12 +73,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneEditText2" />
+            app:layout_constraintTop_toBottomOf="@+id/phoneEditTextSignup" />
 
         <RadioGroup
-            android:id="@+id/rbtnGroup"
+            android:id="@+id/rbtnGroupSignUp"
             android:layout_marginBottom="120dp"
-            app:layout_constraintTop_toBottomOf="@id/confirmPasswordEditText2"
+            app:layout_constraintTop_toBottomOf="@id/passwordEditTextSignup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/signUpButton"

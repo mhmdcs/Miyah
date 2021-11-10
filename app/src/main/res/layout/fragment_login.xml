@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/emailEditTextLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
@@ -36,7 +36,7 @@
             app:layout_constraintTop_toBottomOf="@+id/appTitle" />
 
         <EditText
-            android:id="@+id/passwordEditText"
+            android:id="@+id/passwordEditTextLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -45,7 +45,7 @@
             android:inputType="numberPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/emailEditTextLogin" />
 
         <Button
             android:id="@+id/signInButton"
@@ -55,9 +55,9 @@
             android:layout_marginEnd="8dp"
             android:text="@string/SignIn"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/passwordEditText"
+            app:layout_constraintEnd_toEndOf="@+id/passwordEditTextLogin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLogin" />
 
         <Button
             android:id="@+id/signUpButton"
@@ -68,8 +68,8 @@
             android:text="@string/SignUp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/passwordEditText"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+            app:layout_constraintStart_toStartOf="@+id/passwordEditTextLogin"
+            app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLogin" />
 
         <TextView
             android:id="@+id/textView"
@@ -78,7 +78,7 @@
             android:text="Forgot Password?"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLogin" />
 
         <ProgressBar
             android:id="@+id/status_loading_wheel"
