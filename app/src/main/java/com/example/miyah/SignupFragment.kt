@@ -43,10 +43,7 @@ class SignupFragment : Fragment() {
         auth = Firebase.auth
 
         binding.signUpButton.setOnClickListener { view: View ->
-
-            if(registerUser()){ //means if(registerUser()==true) it is implicitly true in kotlin
-                view.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToBarFragment())
-            }
+            registerUser(view)
         }
 
 
@@ -54,8 +51,7 @@ class SignupFragment : Fragment() {
         return binding.root
     }
 
-    private fun registerUser(): Boolean {
-        var bool = false
+    private fun registerUser(onClickView: View) {
         val email = binding.emailEditTextSignup.text.toString().trim() //good practice to trim whitespace
         val name = binding.nameEditTextSignup.text.toString().trim()
         val phone = binding.phoneEditTextSignup.text.toString().trim()
@@ -121,26 +117,22 @@ class SignupFragment : Fragment() {
 
                                     if(it.isSuccessful){
                                         Toast.makeText(activity,"Successful registration",Toast.LENGTH_SHORT).show()
-                                        bool = true
+                                        onClickView.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToBarFragment())
                                         binding.statusLoadingWheel.isGone
                                     } else {
                                         Toast.makeText(activity,"Failure to register",Toast.LENGTH_SHORT).show()
-                                        bool = false
                                         binding.statusLoadingWheel.isGone
                                     }
                                 }
                         }
                     } else {
                         Toast.makeText(activity,"Failure to register",Toast.LENGTH_SHORT).show()
-                        bool = false
                         binding.statusLoadingWheel.isGone
                     }
                 }
 
             })
         }
-
-        return bool
 
     }
 

@@ -22,7 +22,6 @@ class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var auth: FirebaseAuth;
-    private var bool = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,18 +43,15 @@ class LoginFragment : Fragment() {
         }
 
         binding.signInButton.setOnClickListener { view: View ->
-            if(signingIn()==true) { //means if(registerUser()==true) it is implicitly true in kotlin
-                view.findNavController()
-                    .navigate(LoginFragmentDirections.actionLoginFragmentToBarFragment())
-            }
-            }
+            signingIn(view)
+        }
 
 
         // Inflate the layout for this fragment
         return binding.root
     }
 
-    private fun signingIn(): Boolean {
+    private fun signingIn(onClickView: View) {
 
         val email = binding.emailEditTextLogin.text.toString().trim() //good practice to trim whitespace
         val password = binding.passwordEditTextLogin.text.toString().trim()
@@ -96,18 +92,16 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener{
                 //good practice to run addOnCompleteListener to check if the task completed
             if(it.isSuccessful){
-                bool = true
+                onClickView.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToBarFragment()
+                )
                 Toast.makeText(activity,"Successfully login in",Toast.LENGTH_SHORT).show()
             } else {
-                bool = false
                 Toast.makeText(activity,"Failed to login", Toast.LENGTH_SHORT).show()
             }
 
             }
 
          }
-        Log.i("FirebaseLoginTest",bool.toString())
-        return bool
     }
 
 }
