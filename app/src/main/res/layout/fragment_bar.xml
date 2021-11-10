@@ -45,6 +45,16 @@
             app:layout_constraintTop_toBottomOf="@+id/imgWaterLevel"
             tools:text="20%" />
 
+        <Button
+            android:id="@+id/testButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textWaterPercentage" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

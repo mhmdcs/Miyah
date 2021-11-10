@@ -2,6 +2,7 @@ package com.example.miyah
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -52,6 +53,12 @@ class BarFragment : Fragment() {
         val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().reference //instance of the firebase database reference
         val sensorData: TextView = binding.textWaterPercentage
         val imgDat: ImageView = binding.imgWaterLevel
+
+
+        binding.testButton.setOnClickListener {
+            val intent = Intent(this@BarFragment.requireContext(), MapsActivity::class.java)
+            startActivity(intent)
+        }
 
 
         //define ValueEventListener to decide what happens when the data changes

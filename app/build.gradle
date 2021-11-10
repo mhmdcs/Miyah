@@ -33,6 +33,7 @@ android {
 
     buildFeatures {
         dataBinding true
+        viewBinding true
     }
 
     compileOptions {
@@ -74,4 +75,10 @@ dependencies {
 
     //Timber logging
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //play services google maps and location
+    implementation 'com.google.android.gms:play-services-maps:18.0.0'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
+
 }
