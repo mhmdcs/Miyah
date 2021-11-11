@@ -46,6 +46,10 @@ class SignupFragment : Fragment() {
             registerUser(view)
         }
 
+        binding.providerTestButton.setOnClickListener {
+            it.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToProviderFragment())
+        }
+
 
         // Inflate the layout for this fragment
         return binding.root
@@ -56,6 +60,9 @@ class SignupFragment : Fragment() {
         val name = binding.nameEditTextSignup.text.toString().trim()
         val phone = binding.phoneEditTextSignup.text.toString().trim()
         val password = binding.passwordEditTextSignup.text.toString().trim()
+        val location = ""
+        val espDistance = 0
+        val requestStatus = ""
 
         //perform validations
 
@@ -66,6 +73,11 @@ class SignupFragment : Fragment() {
 
        else if(phone.isEmpty()){
             binding.phoneEditTextSignup.error = "Phone is required!"
+            binding.phoneEditTextSignup.requestFocus()
+        }
+
+        else if(phone.length<9){
+            binding.phoneEditTextSignup.error = "Phone must be over 9 numbers long!"
             binding.phoneEditTextSignup.requestFocus()
         }
 
@@ -104,11 +116,11 @@ class SignupFragment : Fragment() {
                 //check if task (user registration) has been completed and successful
                 override fun onComplete(task: Task<AuthResult>) {
                     if(task.isSuccessful){
-                        val user = User(email, name, phone, userType()) //create an object of User
+                        val user = User(email, name, phone, userType(),location,espDistance,requestStatus) //create an object of User
 
                         //send the user object to the realtime database by getting the current user ID and passing it the user object
                         FirebaseAuth.getInstance().currentUser?.let {
-                            FirebaseDatabase.getInstance().getReference("Users")
+                            FirebaseDatabase.getInstance().getReference("users")
                                 .child(it.uid)
                                 .setValue(user).addOnCompleteListener{
                                     //good practice to run addOnCompleteListener to check if the operation succeeded or failed

@@ -46,6 +46,8 @@ android {
 }
 
 dependencies {
+    //firebase dependencies
+    implementation 'com.firebaseui:firebase-ui-database:7.2.0'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.2'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
 
@@ -76,6 +78,15 @@ dependencies {
     //play services google maps and location
     implementation 'com.google.android.gms:play-services-maps:18.0.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
+
+    //recycler view dependency
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+    //card view dependency
+    implementation "androidx.cardview:cardview:1.0.0"
+
+    //circle image view dependency
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
 }

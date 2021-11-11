@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="6dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardMaxElevation="6dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/ic_launcher"
+            tools:src="@mipmap/ic_launcher"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/client_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/profile_image"
+            tools:text="Client Name"
+            android:layout_marginLeft="10dp"
+            />
+
+        <!--android:autoLink="phone" might not work if number starts with 0 https://stackoverflow.com/questions/6497327/android-make-phone-numbers-clickable-autodetect-->
+        <TextView
+            android:id="@+id/client_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:text=""
+            android:autoLink="phone"
+            android:layout_toRightOf="@+id/profile_image"
+            android:layout_below="@+id/client_name"
+            tools:text="Client Phone"
+            android:layout_marginLeft="10dp"
+            />
+
+        <!--or android:autoLink="map"? https://stackoverflow.com/questions/8767721/how-does-autolinkmap-work  -->
+        <TextView
+            android:id="@+id/client_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/client_phone"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/profile_image"
+            android:gravity="left"
+            android:autoLink="web"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            tools:text="Client Location" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

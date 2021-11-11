@@ -53,7 +53,7 @@ class BarFragment : Fragment() {
         var statusDepth: Int
         val app = requireActivity().application //get the application context
 
-        val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().reference //instance of the firebase database reference
+        database = FirebaseDatabase.getInstance().reference //instance of the firebase database reference
         val sensorData: TextView = binding.textWaterPercentage
         val imgDat: ImageView = binding.imgWaterLevel
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -70,7 +70,7 @@ class BarFragment : Fragment() {
 
 
         //define ValueEventListener to decide what happens when the data changes
-            databaseRef.addValueEventListener(object : ValueEventListener {
+            database.addValueEventListener(object : ValueEventListener {
 
                 //onDataChange method is called every time the data is changed
                 override fun onDataChange(dataSnapshot: DataSnapshot) { //fetch data using dataSnapshot object
@@ -85,49 +85,49 @@ class BarFragment : Fragment() {
                         Integer.toString(status) + " %" //parse the value to string to display it in the sensorData percentage
 
                     //Using Kotlin's when statement
-//                    when{
-//                        status >= 95 && status <= 100 -> imgDat.setImageResource(R.drawable.i100)
-//                        status >= 90 && status < 95 -> imgDat.setImageResource(R.drawable.i95)
-//                        status >= 80 && status < 90 -> imgDat.setImageResource(R.drawable.i90)
-//                        status >= 70 && status < 80 -> imgDat.setImageResource(R.drawable.i80)
-//                        status >= 55 && status < 70 -> imgDat.setImageResource(R.drawable.i70)
-//                        status >= 50 && status < 55 -> imgDat.setImageResource(R.drawable.i55)
-//                        status >= 40 && status < 50 -> imgDat.setImageResource(R.drawable.i50)
-//                        status >= 30 && status < 40 -> imgDat.setImageResource(R.drawable.i40)
-//                        status >= 20 && status < 30 -> imgDat.setImageResource(R.drawable.i30)
-//                        status >= 15 && status < 20 -> imgDat.setImageResource(R.drawable.i20)
-//                        status >= 10 && status < 15 -> {imgDat.setImageResource(R.drawable.i15)
-//                                val notificationManager = ContextCompat.getSystemService(
-//                                app, NotificationManager::class.java) as NotificationManager
-//                                notificationManager.sendNotification(app.getString(R.string.notification_text), app)}
-//                        status > 0 && status < 10 -> imgDat.setImageResource(R.drawable.i10)
-//                        status < 0 -> imgDat.setImageResource(R.drawable.i0)
-//                              else -> imgDat.setImageResource(R.drawable.i0)
-//                    }
+                    when{
+                        status >= 95 && status <= 100 -> imgDat.setImageResource(R.drawable.i100)
+                        status >= 90 && status < 95 -> imgDat.setImageResource(R.drawable.i95)
+                        status >= 80 && status < 90 -> imgDat.setImageResource(R.drawable.i90)
+                        status >= 70 && status < 80 -> imgDat.setImageResource(R.drawable.i80)
+                        status >= 55 && status < 70 -> imgDat.setImageResource(R.drawable.i70)
+                        status >= 50 && status < 55 -> imgDat.setImageResource(R.drawable.i55)
+                        status >= 40 && status < 50 -> imgDat.setImageResource(R.drawable.i50)
+                        status >= 30 && status < 40 -> imgDat.setImageResource(R.drawable.i40)
+                        status >= 20 && status < 30 -> imgDat.setImageResource(R.drawable.i30)
+                        status >= 15 && status < 20 -> imgDat.setImageResource(R.drawable.i20)
+                        status >= 10 && status < 15 -> {imgDat.setImageResource(R.drawable.i15)
+                                val notificationManager = ContextCompat.getSystemService(
+                                app, NotificationManager::class.java) as NotificationManager
+                                notificationManager.sendNotification(app.getString(R.string.notification_text), app)}
+                        status > 0 && status < 10 -> imgDat.setImageResource(R.drawable.i10)
+                        status < 0 -> imgDat.setImageResource(R.drawable.i0)
+                              else -> imgDat.setImageResource(R.drawable.i0)
+                    }
 
                     //change ImageViews based on changes in the water level percentage
-                    if (status >= 95 && status <= 100) {
-                        imgDat.setImageResource(R.drawable.i100)
-                    } else if (status >= 90 && status < 95) {
-                        imgDat.setImageResource(R.drawable.i95)
-                    } else if (status >= 80 && status < 90) {
-                        imgDat.setImageResource(R.drawable.i90)
-                    } else if (status >= 70 && status < 80) {
-                        imgDat.setImageResource(R.drawable.i80)
-                    } else if (status >= 55 && status < 70) {
-                        imgDat.setImageResource(R.drawable.i70)
-                    } else if (status >= 50 && status < 55) {
-                        imgDat.setImageResource(R.drawable.i55)
-                    } else if (status >= 40 && status < 50) {
-                        imgDat.setImageResource(R.drawable.i50)
-                    } else if (status >= 30 && status < 40) {
-                        imgDat.setImageResource(R.drawable.i40)
-                    } else if (status >= 20 && status < 30) {
-                        imgDat.setImageResource(R.drawable.i30)
-                    } else if (status >= 15 && status < 20) {
-                        imgDat.setImageResource(R.drawable.i20)
-                    } else if (status >= 10 && status < 15) {
-                        imgDat.setImageResource(R.drawable.i15)
+//                    if (status >= 95 && status <= 100) {
+//                        imgDat.setImageResource(R.drawable.i100)
+//                    } else if (status >= 90 && status < 95) {
+//                        imgDat.setImageResource(R.drawable.i95)
+//                    } else if (status >= 80 && status < 90) {
+//                        imgDat.setImageResource(R.drawable.i90)
+//                    } else if (status >= 70 && status < 80) {
+//                        imgDat.setImageResource(R.drawable.i80)
+//                    } else if (status >= 55 && status < 70) {
+//                        imgDat.setImageResource(R.drawable.i70)
+//                    } else if (status >= 50 && status < 55) {
+//                        imgDat.setImageResource(R.drawable.i55)
+//                    } else if (status >= 40 && status < 50) {
+//                        imgDat.setImageResource(R.drawable.i50)
+//                    } else if (status >= 30 && status < 40) {
+//                        imgDat.setImageResource(R.drawable.i40)
+//                    } else if (status >= 20 && status < 30) {
+//                        imgDat.setImageResource(R.drawable.i30)
+//                    } else if (status >= 15 && status < 20) {
+//                        imgDat.setImageResource(R.drawable.i20)
+//                    } else if (status >= 10 && status < 15) {
+//                        imgDat.setImageResource(R.drawable.i15)
 
 // trigger a notification here when the water tank level is low. In order to call the
 // sendNotification() function you previously implemented, you need an instance of NotificationManager.
@@ -136,20 +136,22 @@ class BarFragment : Fragment() {
 // you need to request an instance of the NotificationManager from the system.
 // Call the sendNotification() extension function with the notification message and with the context.
 
-                        val notificationManager = ContextCompat.getSystemService(
-                            app, NotificationManager::class.java) as NotificationManager
-                        notificationManager.sendNotification(app.getString(R.string.notification_text), app)
+//                        val notificationManager = ContextCompat.getSystemService(
+//                            app, NotificationManager::class.java) as NotificationManager
+//                        notificationManager.sendNotification(app.getString(R.string.notification_text), app)
+//
+//                    } else if (status > 0 && status < 10) {
+//                        imgDat.setImageResource(R.drawable.i10)
+//                    } else if (status < 0) {
+//                        imgDat.setImageResource(R.drawable.i0)
+//                        sensorData.text = ""
+//                    } else {
+//                        imgDat.setImageResource(R.drawable.i0)
+//                        sensorData.text = ""
+//                    }
 
-                    } else if (status > 0 && status < 10) {
-                        imgDat.setImageResource(R.drawable.i10)
-                    } else if (status < 0) {
-                        imgDat.setImageResource(R.drawable.i0)
-                        sensorData.text = ""
-                    } else {
-                        imgDat.setImageResource(R.drawable.i0)
-                        sensorData.text = ""
-                    }
-                }
+
+                }// end of onDataChange method
 
                 override fun onCancelled(databaseError: DatabaseError) {}
             })
