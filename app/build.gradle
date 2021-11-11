@@ -73,9 +73,6 @@ dependencies {
     // Lifecycles gradle dependency implementation (includes ViewModel and LiveData classes)
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
-    //Timber logging
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-
     //play services google maps and location
     implementation 'com.google.android.gms:play-services-maps:18.0.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'

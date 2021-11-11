@@ -213,7 +213,8 @@ class BarFragment : Fragment() {
         }
         task.addOnSuccessListener {
             if(it != null){
-                Toast.makeText(activity, "${it.latitude} ${it.longitude}", Toast.LENGTH_SHORT)
+                Toast.makeText(activity, "${it.latitude} ${it.longitude}", Toast.LENGTH_SHORT).show()
+                Log.i(TAG,"${it.latitude} ${it.longitude}")
             }
         }
     }
