@@ -21,8 +21,8 @@ import com.google.firebase.database.ValueEventListener
 class ProviderFragment : Fragment() {
 
     private lateinit var binding: FragmentProviderBinding
-    private lateinit var users: LiveData<List<User>>
     private lateinit var database: DatabaseReference
+    private lateinit var miyahAdapter: MiyahAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,23 +49,21 @@ class ProviderFragment : Fragment() {
             .setQuery(database, User::class.java)
             .build()
 
-        var miyahAdapter = MiyahAdapter(options)
-
+        miyahAdapter = MiyahAdapter(options)
         clientsRecycler.adapter = miyahAdapter
-
 
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
+        miyahAdapter.startListening()
 
-
-
-      //  Log.i(TAG,miyahAdapter)
     }
 
     override fun onStop() {
         super.onStop()
+        miyahAdapter.stopListening()
+
     }
 }
