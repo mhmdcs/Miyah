@@ -162,6 +162,8 @@ class BarFragment : Fragment() {
             getString(R.string.water_tank_notification_channel_name)
         )
 
+        setHasOptionsMenu(true)
+
         return binding.root
     }
 
@@ -189,17 +191,14 @@ class BarFragment : Fragment() {
     }
 
 
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.overflow_menu, menu)
+        inflater!!.inflate(R.menu.menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    //when menu item is selected, the fragments onOptionItemSelected method will be called
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        //if the NavigationUI doesn't handle the selection, we will call super.onOptionsItemSelected
-        //with the menu item to allow the app to directly handle the menu item without navigating
-        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+        return NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
                 || super.onOptionsItemSelected(item)
     }
 

@@ -14,7 +14,8 @@
         <entry key="app/src/main/res/layout/fragment_provider.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.2463768115942029" />
         <entry key="app/src/main/res/layout/user_item.xml" value="0.25" />
-        <entry key="app/src/main/res/menu/overflow_menu.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.6149003517270355" />
+        <entry key="app/src/main/res/menu/overflow_menu.xml" value="0.6164169328301334" />
       </map>
     </option>
   </component>
