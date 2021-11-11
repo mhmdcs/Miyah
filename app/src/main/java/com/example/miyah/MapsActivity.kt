@@ -1,12 +1,10 @@
 package com.example.miyah
 
 import android.Manifest
-import android.app.Activity
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -18,9 +16,13 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.example.miyah.databinding.ActivityMapsBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.model.Marker
 
+//Map Activity
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+//google maps implementation
+//https://www.youtube.com/watch?v=DUqkeQlZig8&ab_channel=CodingwithDev&loop=0
+
+
 
      var currentLocation: Location? = null
      var fusedLocationProviderClient: FusedLocationProviderClient? = null

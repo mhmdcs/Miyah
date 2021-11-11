@@ -1,19 +1,19 @@
 package com.example.miyah
 
+import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.*
 import androidx.fragment.app.Fragment
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.setContentView
@@ -21,6 +21,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.miyah.databinding.FragmentBarBinding
 import com.example.miyah.utils.sendNotification
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
@@ -29,6 +31,7 @@ import com.google.firebase.ktx.Firebase
 class BarFragment : Fragment() {
 
     private lateinit var binding: FragmentBarBinding
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var database: DatabaseReference
     val TAG = "LogBarFragment"
 
@@ -53,11 +56,16 @@ class BarFragment : Fragment() {
         val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().reference //instance of the firebase database reference
         val sensorData: TextView = binding.textWaterPercentage
         val imgDat: ImageView = binding.imgWaterLevel
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
 
-        binding.testButton.setOnClickListener {
+        binding.testGoogleMapsButton.setOnClickListener {
             val intent = Intent(this@BarFragment.requireContext(), MapsActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.testLatLngButton.setOnClickListener {
+            fetchLocation()
         }
 
 
@@ -192,4 +200,22 @@ class BarFragment : Fragment() {
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
                 || super.onOptionsItemSelected(item)
     }
+
+    private fun fetchLocation() {
+        val task = fusedLocationProviderClient.lastLocation
+
+        if(ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat
+                .checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(requireActivity(),arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101)
+            return
+        }
+        task.addOnSuccessListener {
+            if(it != null){
+                Toast.makeText(activity, "${it.latitude} ${it.longitude}", Toast.LENGTH_SHORT)
+            }
+        }
+    }
+
 }

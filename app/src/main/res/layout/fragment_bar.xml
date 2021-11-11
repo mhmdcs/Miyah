@@ -37,23 +37,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
-            android:textSize="40sp"
             android:textColor="@color/dark_blue"
+            android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgWaterLevel"
+            app:layout_constraintVertical_bias="0.126"
             tools:text="20%" />
 
         <Button
-            android:id="@+id/testButton"
+            android:id="@+id/testGoogleMapsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test"
+            android:text="Test Google Maps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.471"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textWaterPercentage"
+            app:layout_constraintVertical_bias="0.147" />
+
+        <Button
+            android:id="@+id/testLatLngButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Latitude and Longitude"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textWaterPercentage" />
+            app:layout_constraintTop_toBottomOf="@+id/testGoogleMapsButton" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
