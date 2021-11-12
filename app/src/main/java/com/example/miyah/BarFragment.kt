@@ -60,7 +60,7 @@ class BarFragment : Fragment() {
             val intent = Intent(this@BarFragment.requireContext(), MapsActivity::class.java)
             startActivity(intent)
 
-            fetchLocation()
+       //     fetchLocation()
         }
 
         //define ValueEventListener to decide what happens when the data changes

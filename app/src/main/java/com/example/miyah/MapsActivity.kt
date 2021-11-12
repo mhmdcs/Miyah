@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -16,6 +17,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.example.miyah.databinding.ActivityMapsBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 //Map Activity
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -57,7 +60,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 currentLocation = location
                 val supportMapFragment = (supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?)
                supportMapFragment!!.getMapAsync(this@MapsActivity)
-            // Toast.makeText(this, "${location.latitude} ${location.longitude}", Toast.LENGTH_SHORT)
+            // Toast.makeText(this, "${location.latitude} ${location.longitude}", Toast.LENGTH_LONG)
+
+                var locationString = location.latitude.toString()+","+location.longitude.toString()
+
+                var currentUser = FirebaseAuth.getInstance().uid
+                FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/location")
+                    .setValue(locationString)
+                FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
+                    .setValue("true")
+
             }
         }
     }
