@@ -88,16 +88,39 @@
 
         <RadioGroup
             android:id="@+id/radioGroupSignUp"
-            android:layout_marginBottom="120dp"
-            app:layout_constraintTop_toBottomOf="@id/passwordEditTextSignup"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/signUpButton"
             android:layout_width="wrap_content"
-            android:checkedButton="@id/radioClient"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginBottom="120dp"
+            android:checkedButton="@id/radioClient"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/signUpButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/passwordEditTextSignup"
+            app:layout_constraintVertical_bias="0.0">
 
+            <RadioButton
+                android:id="@+id/radioClient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="84dp"
+                android:text="Client"
+                android:textColor="@color/dark_blue"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passwordEditTextSignup" />
+
+            <RadioButton
+                android:id="@+id/radioServiceProvider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="64dp"
+                android:text="Service Provider"
+                android:textColor="@color/dark_blue"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passwordEditTextSignup" />
         </RadioGroup>
 
         <Button
@@ -113,10 +136,11 @@
             android:id="@+id/providerTestButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="16dp"
             android:text="Provider Test"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ProgressBar
@@ -130,27 +154,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/radioClient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="84dp"
-            android:text="Client"
-            android:textColor="@color/dark_blue"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEditTextSignup" />
 
-        <RadioButton
-            android:id="@+id/radioServiceProvider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="64dp"
-            android:text="Service Provider"
-            android:textColor="@color/dark_blue"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEditTextSignup" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
