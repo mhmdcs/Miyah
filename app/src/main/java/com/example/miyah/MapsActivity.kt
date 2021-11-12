@@ -25,7 +25,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 //google maps implementation
 //https://www.youtube.com/watch?v=DUqkeQlZig8&ab_channel=CodingwithDev&loop=0
 
-
+    companion object {
+        val TAG: String = MapsActivity::class.java.simpleName
+    }
 
      var currentLocation: Location? = null
      var fusedLocationProviderClient: FusedLocationProviderClient? = null

@@ -27,6 +27,10 @@ import com.google.firebase.database.*
 
 class BarFragment : Fragment() {
 
+    companion object {
+        val TAG: String = BarFragment::class.java.simpleName
+    }
+
     private lateinit var binding: FragmentBarBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var database: DatabaseReference
@@ -67,8 +71,8 @@ class BarFragment : Fragment() {
             database.addValueEventListener(object : ValueEventListener {
 
                 //onDataChange method is called every time the data is changed
-                override fun onDataChange(dataSnapshot: DataSnapshot) { //fetch data using dataSnapshot object
-                    statusFb = dataSnapshot.child("distance").value.toString()
+                override fun onDataChange(snapshot: DataSnapshot) { //fetch data using dataSnapshot object
+                    statusFb = snapshot.child("distance").value.toString()
                         .toInt() //get the necessary value from the database and parse it to integer, this is  the actual value of the water level
                     statusDepth =
                         max - statusFb //"max" is the sensor value of the (empty) tank is, meaning it's level 0

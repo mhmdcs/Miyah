@@ -1,6 +1,5 @@
 package com.example.miyah
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -20,6 +19,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ValueEventListener
 
 class ProviderFragment : Fragment() {
+
+    companion object {
+        val TAG: String = ProviderFragment::class.java.simpleName
+    }
 
     private lateinit var binding: FragmentProviderBinding
     private lateinit var database: DatabaseReference

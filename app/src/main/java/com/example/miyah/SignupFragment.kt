@@ -1,6 +1,7 @@
 package com.example.miyah
 
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,10 +19,17 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 
 class SignupFragment : Fragment() {
+
+    companion object {
+        val TAG: String = SignupFragment::class.java.simpleName
+    }
 
     private lateinit var binding: FragmentSignupBinding
     private lateinit var auth: FirebaseAuth;
@@ -44,10 +52,6 @@ class SignupFragment : Fragment() {
 
         binding.signUpButton.setOnClickListener { view: View ->
             registerUser(view)
-        }
-
-        binding.providerTestButton.setOnClickListener {
-            it.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToProviderFragment())
         }
 
 
@@ -126,8 +130,29 @@ class SignupFragment : Fragment() {
                                     //good practice to run addOnCompleteListener to check if the operation succeeded or failed
 
                                     if(it.isSuccessful){
+
+                                        var currentUser = FirebaseAuth.getInstance().uid.toString()
+                                        var typeDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser).child("type")
+
+                                        typeDatabaseReference.addValueEventListener(object:
+                                            ValueEventListener {
+                                            override fun onDataChange(snapshot: DataSnapshot) {
+                                                Log.i(LoginFragment.TAG,snapshot.value.toString())
+
+                                                if(snapshot.value.toString()=="Client"){
+                                                    onClickView.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToBarFragment())
+                                                } else {
+                                                    onClickView.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToProviderFragment())
+                                                }
+
+                                            }
+
+                                            override fun onCancelled(error: DatabaseError) {
+                                            }
+
+                                        })
+
                                         Toast.makeText(activity,"Successful registration",Toast.LENGTH_SHORT).show()
-                                        onClickView.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToBarFragment())
                                         binding.statusLoadingWheel.isVisible = false
                                     } else {
                                         Toast.makeText(activity,"Failure to register",Toast.LENGTH_SHORT).show()

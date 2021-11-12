@@ -1,6 +1,5 @@
 package com.example.miyah
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -16,10 +15,17 @@ import com.example.miyah.databinding.FragmentLoginBinding
 import com.example.miyah.databinding.FragmentSignupBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 
 class LoginFragment : Fragment() {
 
+    companion object {
+        val TAG: String = LoginFragment::class.java.simpleName
+    }
     private lateinit var binding: FragmentLoginBinding
     private lateinit var auth: FirebaseAuth;
 
@@ -92,8 +98,27 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener{
                 //good practice to run addOnCompleteListener to check if the task completed
             if(it.isSuccessful){
-                onClickView.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToBarFragment()
-                )
+
+                var currentUser = FirebaseAuth.getInstance().uid.toString()
+                var typeDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser).child("type")
+
+                typeDatabaseReference.addValueEventListener(object: ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        Log.i(TAG,snapshot.value.toString())
+
+                        if(snapshot.value.toString()=="Client"){
+                            onClickView.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToBarFragment())
+                        } else {
+                            onClickView.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToProviderFragment())
+                        }
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                    }
+
+                })
+
                 Toast.makeText(activity,"Successfully logged in",Toast.LENGTH_SHORT).show()
                 binding.statusLoadingWheel.isVisible = false
 
