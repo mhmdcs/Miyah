@@ -12,11 +12,9 @@ import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.miyah.databinding.FragmentBarBinding
@@ -24,9 +22,6 @@ import com.example.miyah.utils.sendNotification
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
-import com.google.firebase.ktx.Firebase
 
 class BarFragment : Fragment() {
 
@@ -193,7 +188,7 @@ class BarFragment : Fragment() {
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater!!.inflate(R.menu.menu, menu)
+        inflater!!.inflate(R.menu.dropdown_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 

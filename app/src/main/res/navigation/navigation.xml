@@ -5,52 +5,62 @@
     android:id="@+id/navigation"
     app:startDestination="@id/loginFragment">
     <fragment
-        tools:layout="@layout/fragment_login"
         android:id="@+id/loginFragment"
         android:name="com.example.miyah.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="Miyah"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_loginFragment_to_barFragment"
             app:destination="@id/barFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_loginFragment_to_providerFragment"
             app:destination="@id/providerFragment" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_signup"
         android:id="@+id/signupFragment"
         android:name="com.example.miyah.SignupFragment"
-        android:label="SignupFragment" >
+        android:label="Miyah"
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signupFragment_to_barFragment"
             app:destination="@id/barFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_signupFragment_to_providerFragment"
             app:destination="@id/providerFragment" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_bar"
         android:id="@+id/barFragment"
         android:name="com.example.miyah.BarFragment"
-        android:label="BarFragment" />
+        android:label="Water Level"
+        tools:layout="@layout/fragment_bar" />
     <fragment
-        tools:layout="@layout/fragment_provider"
         android:id="@+id/providerFragment"
         android:name="com.example.miyah.ProviderFragment"
-        android:label="ProviderFragment" />
+        android:label="Available Clients"
+        tools:layout="@layout/fragment_provider" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.miyah.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/manualFragment"
+        android:name="com.example.miyah.ManualFragment"
+        android:label="Manual"
+        tools:layout="@layout/fragment_manual" />
 </navigation>
