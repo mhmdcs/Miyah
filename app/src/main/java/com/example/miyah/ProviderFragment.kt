@@ -25,7 +25,7 @@ class ProviderFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentProviderBinding
-    private lateinit var database: DatabaseReference
+  //  private lateinit var database: DatabaseReference
     private lateinit var miyahAdapter: MiyahAdapter
 
     override fun onCreateView(
@@ -41,7 +41,7 @@ class ProviderFragment : Fragment() {
             false)
 
         val app = requireActivity().application //get the application context
-        database = FirebaseDatabase.getInstance().getReference().child("users")
+        var filterQuery = FirebaseDatabase.getInstance().getReference().child("users").orderByChild("requestStatus").equalTo("true")
 
         val clientsRecycler = binding.clientsRecycler
        // clientsRecycler.setLayoutManager(LinearLayoutManager(requireContext())) //already set this in the xml layout
@@ -50,7 +50,7 @@ class ProviderFragment : Fragment() {
         //https://firebaseopensource.com/projects/firebase/firebaseui-android/database/readme/
 
         val options: FirebaseRecyclerOptions<User> = FirebaseRecyclerOptions.Builder<User>()
-            .setQuery(database, User::class.java)
+            .setQuery(filterQuery, User::class.java)
             .build()
 
         miyahAdapter = MiyahAdapter(options)

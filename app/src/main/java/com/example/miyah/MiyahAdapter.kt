@@ -14,7 +14,6 @@ class MiyahAdapter(options: FirebaseRecyclerOptions<User>) :
         val name = binding.clientName
         val phone = binding.clientPhone
         val location = binding.clientLocation
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientsViewHolder {
