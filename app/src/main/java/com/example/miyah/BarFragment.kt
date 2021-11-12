@@ -21,6 +21,7 @@ import com.example.miyah.databinding.FragmentBarBinding
 import com.example.miyah.utils.sendNotification
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class BarFragment : Fragment() {
@@ -193,6 +194,7 @@ class BarFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        FirebaseAuth.getInstance().signOut()
         return NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
                 || super.onOptionsItemSelected(item)
     }
