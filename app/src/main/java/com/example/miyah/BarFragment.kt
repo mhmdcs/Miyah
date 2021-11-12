@@ -14,6 +14,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -55,15 +56,12 @@ class BarFragment : Fragment() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
 
-        binding.testGoogleMapsButton.setOnClickListener {
+        binding.requestWaterRefillButton.setOnClickListener {
             val intent = Intent(this@BarFragment.requireContext(), MapsActivity::class.java)
             startActivity(intent)
-        }
 
-        binding.testLatLngButton.setOnClickListener {
             fetchLocation()
         }
-
 
         //define ValueEventListener to decide what happens when the data changes
             database.addValueEventListener(object : ValueEventListener {
@@ -82,70 +80,59 @@ class BarFragment : Fragment() {
 
                     //Using Kotlin's when statement
                     when{
-                        status >= 95 && status <= 100 -> imgDat.setImageResource(R.drawable.i100)
-                        status >= 90 && status < 95 -> imgDat.setImageResource(R.drawable.i95)
-                        status >= 80 && status < 90 -> imgDat.setImageResource(R.drawable.i90)
-                        status >= 70 && status < 80 -> imgDat.setImageResource(R.drawable.i80)
-                        status >= 55 && status < 70 -> imgDat.setImageResource(R.drawable.i70)
-                        status >= 50 && status < 55 -> imgDat.setImageResource(R.drawable.i55)
-                        status >= 40 && status < 50 -> imgDat.setImageResource(R.drawable.i50)
-                        status >= 30 && status < 40 -> imgDat.setImageResource(R.drawable.i40)
-                        status >= 20 && status < 30 -> imgDat.setImageResource(R.drawable.i30)
-                        status >= 15 && status < 20 -> imgDat.setImageResource(R.drawable.i20)
+                        status >= 95 && status <= 100 -> {imgDat.setImageResource(R.drawable.i100)
+                        binding.requestWaterRefillButton.isVisible = false
+                            var currentUser = FirebaseAuth.getInstance().uid
+                            FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
+                                .setValue("false")}
+                        status >= 90 && status < 95 -> {imgDat.setImageResource(R.drawable.i95)
+                        binding.requestWaterRefillButton.isVisible = false
+                            var currentUser = FirebaseAuth.getInstance().uid
+                            FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
+                                .setValue("false")}
+                        status >= 80 && status < 90 -> {imgDat.setImageResource(R.drawable.i90)
+                        binding.requestWaterRefillButton.isVisible = false
+                            var currentUser = FirebaseAuth.getInstance().uid
+                            FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
+                                .setValue("false")}
+                        status >= 70 && status < 80 -> {imgDat.setImageResource(R.drawable.i80)
+                        binding.requestWaterRefillButton.isVisible = false
+                            var currentUser = FirebaseAuth.getInstance().uid
+                            FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
+                                .setValue("false")}
+                        status >= 55 && status < 70 -> {imgDat.setImageResource(R.drawable.i70)
+                        binding.requestWaterRefillButton.isVisible = false
+                            var currentUser = FirebaseAuth.getInstance().uid
+                            FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
+                                .setValue("false")}
+                        status >= 50 && status < 55 -> {imgDat.setImageResource(R.drawable.i55)
+                        binding.requestWaterRefillButton.isVisible = false
+                            var currentUser = FirebaseAuth.getInstance().uid
+                            FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
+                                .setValue("false")}
+                        status >= 40 && status < 50 -> {imgDat.setImageResource(R.drawable.i50)
+                        binding.requestWaterRefillButton.isVisible = false
+                            var currentUser = FirebaseAuth.getInstance().uid
+                            FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
+                                .setValue("false")
+                        }
+                        status >= 30 && status < 40 -> {imgDat.setImageResource(R.drawable.i40)
+                            binding.requestWaterRefillButton.isVisible = true}
+                        status >= 20 && status < 30 -> {imgDat.setImageResource(R.drawable.i30)
+                        binding.requestWaterRefillButton.isVisible = true}
+                        status >= 15 && status < 20 -> {imgDat.setImageResource(R.drawable.i20)
+                            binding.requestWaterRefillButton.isVisible = true}
                         status >= 10 && status < 15 -> {imgDat.setImageResource(R.drawable.i15)
                                 val notificationManager = ContextCompat.getSystemService(
                                 app, NotificationManager::class.java) as NotificationManager
-                                notificationManager.sendNotification(app.getString(R.string.notification_text), app)}
-                        status > 0 && status < 10 -> imgDat.setImageResource(R.drawable.i10)
-                        status < 0 -> imgDat.setImageResource(R.drawable.i0)
+                                notificationManager.sendNotification(app.getString(R.string.notification_text), app)
+                                 binding.requestWaterRefillButton.isVisible = true}
+                        status > 0 && status < 10 -> {imgDat.setImageResource(R.drawable.i10)
+                            binding.requestWaterRefillButton.isVisible = true}
+                        status < 0 -> {imgDat.setImageResource(R.drawable.i0)
+                            binding.requestWaterRefillButton.isVisible = true}
                               else -> imgDat.setImageResource(R.drawable.i0)
                     }
-
-                    //change ImageViews based on changes in the water level percentage
-//                    if (status >= 95 && status <= 100) {
-//                        imgDat.setImageResource(R.drawable.i100)
-//                    } else if (status >= 90 && status < 95) {
-//                        imgDat.setImageResource(R.drawable.i95)
-//                    } else if (status >= 80 && status < 90) {
-//                        imgDat.setImageResource(R.drawable.i90)
-//                    } else if (status >= 70 && status < 80) {
-//                        imgDat.setImageResource(R.drawable.i80)
-//                    } else if (status >= 55 && status < 70) {
-//                        imgDat.setImageResource(R.drawable.i70)
-//                    } else if (status >= 50 && status < 55) {
-//                        imgDat.setImageResource(R.drawable.i55)
-//                    } else if (status >= 40 && status < 50) {
-//                        imgDat.setImageResource(R.drawable.i50)
-//                    } else if (status >= 30 && status < 40) {
-//                        imgDat.setImageResource(R.drawable.i40)
-//                    } else if (status >= 20 && status < 30) {
-//                        imgDat.setImageResource(R.drawable.i30)
-//                    } else if (status >= 15 && status < 20) {
-//                        imgDat.setImageResource(R.drawable.i20)
-//                    } else if (status >= 10 && status < 15) {
-//                        imgDat.setImageResource(R.drawable.i15)
-
-// trigger a notification here when the water tank level is low. In order to call the
-// sendNotification() function you previously implemented, you need an instance of NotificationManager.
-// NotificationManager is a system service which provides all the functions exposed for notifications api,
-// including the extension function you added. Anytime you want to send, cancel or update a notification
-// you need to request an instance of the NotificationManager from the system.
-// Call the sendNotification() extension function with the notification message and with the context.
-
-//                        val notificationManager = ContextCompat.getSystemService(
-//                            app, NotificationManager::class.java) as NotificationManager
-//                        notificationManager.sendNotification(app.getString(R.string.notification_text), app)
-//
-//                    } else if (status > 0 && status < 10) {
-//                        imgDat.setImageResource(R.drawable.i10)
-//                    } else if (status < 0) {
-//                        imgDat.setImageResource(R.drawable.i0)
-//                        sensorData.text = ""
-//                    } else {
-//                        imgDat.setImageResource(R.drawable.i0)
-//                        sensorData.text = ""
-//                    }
-
 
                 }// end of onDataChange method
 
@@ -176,7 +163,7 @@ class BarFragment : Fragment() {
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.RED
             notificationChannel.enableVibration(true)
-            notificationChannel.description = "Time for breakfast"
+            notificationChannel.description = "Water Level"
 
             val notificationManager = requireActivity().getSystemService(
                 NotificationManager::class.java
@@ -201,6 +188,7 @@ class BarFragment : Fragment() {
 
     private fun fetchLocation() {
         val task = fusedLocationProviderClient.lastLocation
+        var location: String
 
         if(ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED && ActivityCompat
@@ -213,8 +201,18 @@ class BarFragment : Fragment() {
             if(it != null){
                 Toast.makeText(activity, "${it.latitude} ${it.longitude}", Toast.LENGTH_SHORT).show()
                 Log.i(TAG,"${it.latitude} ${it.longitude}")
+                location = it.latitude.toString()+","+it.longitude.toString()
+
+                var currentUser = FirebaseAuth.getInstance().uid
+                FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/location")
+                    .setValue(location)
+                FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
+                    .setValue("true")
+                Log.i(TAG,currentUser.toString())
+                Log.i(TAG,location)
             }
         }
+        return
     }
 
 }

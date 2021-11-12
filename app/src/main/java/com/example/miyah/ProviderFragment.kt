@@ -3,12 +3,12 @@ package com.example.miyah
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.miyah.databinding.FragmentProviderBinding
@@ -16,6 +16,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ValueEventListener
 
 class ProviderFragment : Fragment() {
@@ -52,6 +53,8 @@ class ProviderFragment : Fragment() {
         miyahAdapter = MiyahAdapter(options)
         clientsRecycler.adapter = miyahAdapter
 
+        setHasOptionsMenu(true)
+
         return binding.root
     }
 
@@ -66,4 +69,16 @@ class ProviderFragment : Fragment() {
         miyahAdapter.stopListening()
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater!!.inflate(R.menu.dropdown_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        FirebaseAuth.getInstance().signOut()
+        return NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
+                || super.onOptionsItemSelected(item)
+    }
+
 }

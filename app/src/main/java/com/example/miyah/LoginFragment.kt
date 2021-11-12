@@ -86,7 +86,7 @@ class LoginFragment : Fragment() {
 
          else {
         //sign the user in via the firebase authentication
-        binding.statusLoadingWheel.isVisible
+        binding.statusLoadingWheel.isVisible = true
 
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener{
@@ -94,9 +94,12 @@ class LoginFragment : Fragment() {
             if(it.isSuccessful){
                 onClickView.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToBarFragment()
                 )
-                Toast.makeText(activity,"Successfully login in",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,"Successfully logged in",Toast.LENGTH_SHORT).show()
+                binding.statusLoadingWheel.isVisible = false
+
             } else {
-                Toast.makeText(activity,"Failed to login", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,"User does not exist", Toast.LENGTH_SHORT).show()
+                binding.statusLoadingWheel.isVisible = false
             }
 
             }

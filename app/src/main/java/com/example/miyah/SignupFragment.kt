@@ -109,7 +109,7 @@ class SignupFragment : Fragment() {
         else {
         //write user data to the realtime database
 
-        binding.statusLoadingWheel.isVisible
+        binding.statusLoadingWheel.isVisible = true
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(object : OnCompleteListener<AuthResult>{
 
@@ -128,10 +128,10 @@ class SignupFragment : Fragment() {
                                     if(it.isSuccessful){
                                         Toast.makeText(activity,"Successful registration",Toast.LENGTH_SHORT).show()
                                         onClickView.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToBarFragment())
-                                        binding.statusLoadingWheel.isGone
+                                        binding.statusLoadingWheel.isVisible = false
                                     } else {
                                         Toast.makeText(activity,"Failure to register",Toast.LENGTH_SHORT).show()
-                                        binding.statusLoadingWheel.isGone
+                                        binding.statusLoadingWheel.isVisible = false
                                     }
                                 }
                         }
