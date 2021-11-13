@@ -72,39 +72,44 @@ class BarFragment : Fragment() {
 
                 //onDataChange method is called every time the data is changed
                 override fun onDataChange(snapshot: DataSnapshot) { //fetch data using dataSnapshot object
-                    statusFb = snapshot.child("distance").value.toString()
+
+
+
+                    var currentUser = FirebaseAuth.getInstance().uid
+                    statusFb = snapshot.child("users/"+currentUser+"/espDistance").value.toString()
+                        //    statusFb = snapshot.child("distance").value.toString()
                         .toInt() //get the necessary value from the database and parse it to integer, this is  the actual value of the water level
                     statusDepth =
                         max - statusFb //"max" is the sensor value of the (empty) tank is, meaning it's level 0
                     status =
                         (statusDepth.toDouble() / max.toDouble() * 100).toInt() //water level percentage calculation
 
-                    sensorData.text =
-                        Integer.toString(status) + " %" //parse the value to string to display it in the sensorData percentage
+
+                    sensorData.text = Integer.toString(status) + " %" //parse the value to string to display it in the sensorData percentage
 
                     //Using Kotlin's when statement
                     when{
-                        status >= 95 && status <= 100 -> {imgDat.setImageResource(R.drawable.i100)
+                        status >= 75 && status <= 80 -> {imgDat.setImageResource(R.drawable.i100)
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
                                 .setValue("false")}
-                        status >= 90 && status < 95 -> {imgDat.setImageResource(R.drawable.i95)
+                        status >= 70 && status < 75 -> {imgDat.setImageResource(R.drawable.i95)
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
                                 .setValue("false")}
-                        status >= 80 && status < 90 -> {imgDat.setImageResource(R.drawable.i90)
+                        status >= 65 && status < 70 -> {imgDat.setImageResource(R.drawable.i90)
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
                                 .setValue("false")}
-                        status >= 70 && status < 80 -> {imgDat.setImageResource(R.drawable.i80)
+                        status >= 60 && status < 65 -> {imgDat.setImageResource(R.drawable.i80)
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
                                 .setValue("false")}
-                        status >= 55 && status < 70 -> {imgDat.setImageResource(R.drawable.i70)
+                        status >= 55 && status < 60 -> {imgDat.setImageResource(R.drawable.i70)
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
@@ -135,7 +140,8 @@ class BarFragment : Fragment() {
                             binding.requestWaterRefillButton.isVisible = true}
                         status < 0 -> {imgDat.setImageResource(R.drawable.i0)
                             binding.requestWaterRefillButton.isVisible = true}
-                              else -> imgDat.setImageResource(R.drawable.i0)
+                              else -> {imgDat.setImageResource(R.drawable.i0)
+                                  binding.requestWaterRefillButton.isVisible = true}
                     }
 
                 }// end of onDataChange method
