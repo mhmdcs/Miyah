@@ -85,7 +85,7 @@ class ClientFragment : Fragment() {
                         (statusDepth.toDouble() / max.toDouble() * 100).toInt() //water level percentage calculation
 
 
-                    sensorData.text = Integer.toString(status) + " %" //parse the value to string to display it in the sensorData percentage
+                    sensorData.text = "100%" //parse the value to string to display it in the sensorData percentage
 
                     //Using Kotlin's when statement
                     when{
@@ -93,55 +93,68 @@ class ClientFragment : Fragment() {
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
-                                .setValue("false")}
+                                .setValue("false")
+                            sensorData.text = "100%"}
                         status >= 70 && status < 75 -> {imgDat.setImageResource(R.drawable.i95)
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
-                                .setValue("false")}
+                                .setValue("false")
+                            sensorData.text = "95%"}
                         status >= 65 && status < 70 -> {imgDat.setImageResource(R.drawable.i90)
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
-                                .setValue("false")}
+                                .setValue("false")
+                            sensorData.text = "90%"}
                         status >= 60 && status < 65 -> {imgDat.setImageResource(R.drawable.i80)
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
-                                .setValue("false")}
+                                .setValue("false")
+                            sensorData.text = "80%"}
                         status >= 55 && status < 60 -> {imgDat.setImageResource(R.drawable.i70)
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
-                                .setValue("false")}
+                                .setValue("false")
+                            sensorData.text = "70%"}
                         status >= 50 && status < 55 -> {imgDat.setImageResource(R.drawable.i55)
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
-                                .setValue("false")}
+                                .setValue("false")
+                            sensorData.text = "55%"}
                         status >= 40 && status < 50 -> {imgDat.setImageResource(R.drawable.i50)
                         binding.requestWaterRefillButton.isVisible = false
                             var currentUser = FirebaseAuth.getInstance().uid
                             FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
                                 .setValue("false")
-                        }
+                            sensorData.text = "50%"}
                         status >= 30 && status < 40 -> {imgDat.setImageResource(R.drawable.i40)
-                            binding.requestWaterRefillButton.isVisible = true}
+                            binding.requestWaterRefillButton.isVisible = true
+                            sensorData.text = "40%"}
                         status >= 20 && status < 30 -> {imgDat.setImageResource(R.drawable.i30)
-                        binding.requestWaterRefillButton.isVisible = true}
+                        binding.requestWaterRefillButton.isVisible = true
+                            sensorData.text = "30%"}
                         status >= 15 && status < 20 -> {imgDat.setImageResource(R.drawable.i20)
-                            binding.requestWaterRefillButton.isVisible = true}
+                            binding.requestWaterRefillButton.isVisible = true
+                            sensorData.text = "20%"}
                         status >= 10 && status < 15 -> {imgDat.setImageResource(R.drawable.i15)
                                 val notificationManager = ContextCompat.getSystemService(
                                 app, NotificationManager::class.java) as NotificationManager
                                 notificationManager.sendNotification(app.getString(R.string.notification_text), app)
-                                 binding.requestWaterRefillButton.isVisible = true}
+                                 binding.requestWaterRefillButton.isVisible = true
+                            sensorData.text = "15%"}
                         status > 0 && status < 10 -> {imgDat.setImageResource(R.drawable.i10)
-                            binding.requestWaterRefillButton.isVisible = true}
+                            binding.requestWaterRefillButton.isVisible = true
+                            sensorData.text = "10%"}
                         status < 0 -> {imgDat.setImageResource(R.drawable.i0)
-                            binding.requestWaterRefillButton.isVisible = true}
+                            binding.requestWaterRefillButton.isVisible = true
+                            sensorData.text = "0%"}
                               else -> {imgDat.setImageResource(R.drawable.i0)
-                                  binding.requestWaterRefillButton.isVisible = true}
+                                  binding.requestWaterRefillButton.isVisible = true
+                                  sensorData.text = "0%"}
                     }
 
                 }// end of onDataChange method
