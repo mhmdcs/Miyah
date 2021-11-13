@@ -17,8 +17,8 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_loginFragment_to_barFragment"
-            app:destination="@id/barFragment"
+            android:id="@+id/action_loginFragment_to_clientFragment"
+            app:destination="@id/clientFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -33,8 +33,8 @@
         android:label="Miyah"
         tools:layout="@layout/fragment_signup">
         <action
-            android:id="@+id/action_signupFragment_to_barFragment"
-            app:destination="@id/barFragment"
+            android:id="@+id/action_signupFragment_to_clientFragment"
+            app:destination="@id/clientFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -44,10 +44,10 @@
             app:destination="@id/providerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/barFragment"
-        android:name="com.example.miyah.BarFragment"
+        android:id="@+id/clientFragment"
+        android:name="com.example.miyah.ClientFragment"
         android:label="Water Level"
-        tools:layout="@layout/fragment_bar" />
+        tools:layout="@layout/fragment_client" />
     <fragment
         android:id="@+id/providerFragment"
         android:name="com.example.miyah.ProviderFragment"

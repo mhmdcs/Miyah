@@ -18,23 +18,23 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.example.miyah.databinding.FragmentBarBinding
+import com.example.miyah.databinding.FragmentClientBinding
 import com.example.miyah.utils.sendNotification
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
-class BarFragment : Fragment() {
+class ClientFragment : Fragment() {
 
     companion object {
-        val TAG: String = BarFragment::class.java.simpleName
+        val TAG: String = ClientFragment::class.java.simpleName
     }
 
-    private lateinit var binding: FragmentBarBinding
+    private lateinit var binding: FragmentClientBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var database: DatabaseReference
-    val TAG = "LogBarFragment"
+    val TAG = "LogClientFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +44,7 @@ class BarFragment : Fragment() {
         //initialize the data binding variable
          binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_bar,
+            R.layout.fragment_client,
             container,
             false)
 
@@ -61,7 +61,7 @@ class BarFragment : Fragment() {
 
 
         binding.requestWaterRefillButton.setOnClickListener {
-            val intent = Intent(this@BarFragment.requireContext(), MapsActivity::class.java)
+            val intent = Intent(this@ClientFragment.requireContext(), MapsActivity::class.java)
             startActivity(intent)
 
        //     fetchLocation()

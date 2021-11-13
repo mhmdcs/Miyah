@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat.startActivity
 
 import android.content.Intent
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 
 
 class MiyahAdapter(options: FirebaseRecyclerOptions<User>) :
@@ -23,6 +24,7 @@ class MiyahAdapter(options: FirebaseRecyclerOptions<User>) :
         val name = binding.clientName
         val phone = binding.clientPhone
         val locationImage = binding.clientLocationImage
+        val loadingWheel = binding.statusLoadingWheel
 
     }
 
@@ -32,8 +34,9 @@ class MiyahAdapter(options: FirebaseRecyclerOptions<User>) :
     }
 
     override fun onBindViewHolder(holder: ClientsViewHolder, position: Int, model: User) {
-        holder.name.text = model.name
-        holder.phone.text = model.phone
+        holder.loadingWheel.isVisible = true
+        holder.name.text = "Name: "+model.name
+        holder.phone.text = "Number: "+model.phone
 //        val uriString = "https://www.google.com/maps/search/?api=1&query="+model.location
 //        val locationUri = uriString.toUri()
 //        holder.locationImage.setImageURI(locationUri)
@@ -48,7 +51,7 @@ class MiyahAdapter(options: FirebaseRecyclerOptions<User>) :
             }
 
         })
-
+        holder.loadingWheel.isVisible = false
     }
 
 }

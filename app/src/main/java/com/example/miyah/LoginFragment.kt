@@ -107,7 +107,7 @@ class LoginFragment : Fragment() {
                         Log.i(TAG,snapshot.value.toString())
 
                         if(snapshot.value.toString()=="Client"){
-                            onClickView.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToBarFragment())
+                            onClickView.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToClientFragment())
                         } else {
                             onClickView.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToProviderFragment())
                         }

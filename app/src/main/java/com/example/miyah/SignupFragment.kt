@@ -12,7 +12,6 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import com.example.miyah.databinding.FragmentBarBinding
 import com.example.miyah.databinding.FragmentSignupBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -140,7 +139,7 @@ class SignupFragment : Fragment() {
                                                 Log.i(LoginFragment.TAG,snapshot.value.toString())
 
                                                 if(snapshot.value.toString()=="Client"){
-                                                    onClickView.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToBarFragment())
+                                                    onClickView.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToClientFragment())
                                                 } else {
                                                     onClickView.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToProviderFragment())
                                                 }
