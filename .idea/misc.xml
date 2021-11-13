@@ -7,7 +7,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_provider.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/client_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/client_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.23097826086956522" />
         <entry key="app/src/main/res/layout/fragment_bar.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.165" />
