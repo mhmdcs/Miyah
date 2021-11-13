@@ -13,6 +13,7 @@
     <string name="SignIn">Sign In</string>
     <string name="SignUp">Sign Up</string>
     <string name="Logout">Logout</string>
+    <string name="editProfile">Edit Profile</string>
 
     <!-- Bar fragment strings -->
 
@@ -21,7 +22,6 @@
     <string name="manual_text">You must set up a microcontroller NodeMCU ESP8266-12E with Ultrasonic Sensor HC-SR04 coded in Arduino for the client page to work properly with your account. The code for the Arduino has already been provided.</string>
     <string name="about_text1">This application was developed natively in Kotlin as part of the graduation project "Smart Water Level Detecting System" for the College of Computer and Information Sciences in the Al-Imam Muhammad Ibn Saud Islamic University.</string>
     <string name="about_text2">Developers: \n Mohammed Almekhlafi \n Sattam Alhamidy \n Abdulrahman Albalood</string>
-
 
 
     <!-- Notification strings -->

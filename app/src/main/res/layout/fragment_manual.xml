@@ -46,7 +46,7 @@
          android:textAppearance="@style/TextAppearance.AppCompat.Large"
          android:text="@string/manual_text"
          android:gravity="center"
-         android:textColor="@color/blue"
+         android:textColor="@color/dark_blue"
          />
 
  </androidx.constraintlayout.widget.ConstraintLayout>

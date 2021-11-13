@@ -17,6 +17,13 @@ import com.google.firebase.database.FirebaseDatabase
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ValueEventListener
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+
+import androidx.annotation.NonNull
+import androidx.fragment.app.FragmentActivity
+import java.lang.IllegalStateException
+
 
 class ProviderFragment : Fragment() {
 
@@ -79,9 +86,14 @@ class ProviderFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        FirebaseAuth.getInstance().signOut()
-        return NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
-                || super.onOptionsItemSelected(item)
+
+        when(item.itemId){
+            R.id.profileFragment -> NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
+            R.id.loginFragment -> { FirebaseAuth.getInstance().signOut()
+                NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())}
+            }
+        return true
     }
 
-}
+
+    }

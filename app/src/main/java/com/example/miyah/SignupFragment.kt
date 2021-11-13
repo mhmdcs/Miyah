@@ -175,7 +175,7 @@ class SignupFragment : Fragment() {
         val radioClient = binding.radioClient
         val radioProvider = binding.radioServiceProvider
         if (radioGroup.checkedRadioButtonId ==radioClient.id){
-        return radioClient.text.toString()
+            return radioClient.text.toString()
         }
         else return radioProvider.text.toString()
     }
