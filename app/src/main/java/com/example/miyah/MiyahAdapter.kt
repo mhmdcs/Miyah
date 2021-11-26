@@ -34,8 +34,8 @@ class MiyahAdapter(options: FirebaseRecyclerOptions<User>) :
 
     override fun onBindViewHolder(holder: ClientsViewHolder, position: Int, model: User) {
         holder.loadingWheel.isVisible = true
-        holder.name.text = "Name: "+model.name
-        holder.phone.text = "Number: "+model.phone
+        holder.name.text = "Client Name: "+model.name
+        holder.phone.text = "Phone Number: "+model.phone
 //        val uriString = "https://www.google.com/maps/search/?api=1&query="+model.location
 //        val locationUri = uriString.toUri()
 //        holder.locationImage.setImageURI(locationUri)
