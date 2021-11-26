@@ -66,7 +66,7 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.miyah.ProfileFragment"
-        android:label="Edit Profile"
+        android:label="Update Profile"
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"

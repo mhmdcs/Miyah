@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/profileFragment"
-        android:title="@string/editProfile"
+        android:title="Update Profile"
         />
 
     <item
