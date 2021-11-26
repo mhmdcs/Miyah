@@ -30,7 +30,7 @@
          android:paddingRight="9dp"
          android:text="@string/manual_text"
          android:textAppearance="@style/TextAppearance.AppCompat.Large"
-         android:textColor="@color/dark_blue"/>
+         android:textColor="#00003f"/>
 
  </LinearLayout>
 
