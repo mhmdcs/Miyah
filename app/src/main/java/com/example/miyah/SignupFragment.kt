@@ -46,13 +46,12 @@ class SignupFragment : Fragment() {
             container,
             false)
 
-        // Initialize Firebase Auth
+        //Initialize Firebase Auth
         auth = Firebase.auth
 
         binding.signUpButton.setOnClickListener { view: View ->
             registerUser(view)
         }
-
 
         // Inflate the layout for this fragment
         return binding.root
@@ -69,7 +68,19 @@ class SignupFragment : Fragment() {
 
         //perform validations
 
-        if(name.isEmpty()){
+         if(email.isEmpty()){
+            binding.emailEditTextSignup.error = "Email is required!"
+            binding.emailEditTextSignup.requestFocus()
+        }
+
+        //check if user provided a valid email address pattern (i.e. it has @ symbol or .com)
+        // ! in the if-condition is a negation, this means: if it does NOT match, then do the following
+        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            binding.emailEditTextSignup.error = "Please provide valid email!"
+            binding.emailEditTextSignup.requestFocus()
+        }
+
+       else if(name.isEmpty()){
             binding.nameEditTextSignup.error = "Name is required!"
             binding.nameEditTextSignup.requestFocus()
         }
@@ -82,18 +93,6 @@ class SignupFragment : Fragment() {
         else if(phone.length<9){
             binding.phoneEditTextSignup.error = "Phone must be over 9 numbers long!"
             binding.phoneEditTextSignup.requestFocus()
-        }
-
-        else if(email.isEmpty()){
-            binding.emailEditTextSignup.error = "Email is required!"
-            binding.emailEditTextSignup.requestFocus()
-        }
-
-         //check if user provided a valid email address pattern (i.e. it has @ symbol or .com)
-        // ! in the if-condition is a negation, this means: if it does NOT match, then do the following
-        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            binding.emailEditTextSignup.error = "Please provide valid email!"
-            binding.emailEditTextSignup.requestFocus()
         }
 
         else if(password.isEmpty()){
@@ -179,5 +178,6 @@ class SignupFragment : Fragment() {
         }
         else return radioProvider.text.toString()
     }
+
 
 }

@@ -14,24 +14,11 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/appTitle2"
+            app:layout_constraintBottom_toTopOf="@+id/emailEditTextSignup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/miyah_logo" />
-
-        <TextView
-            android:id="@+id/appTitle2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
-            android:text="Miyah"
-            android:textAlignment="center"
-            android:textColor="@color/dark_blue"
-            android:textSize="34sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:srcCompat="@drawable/miyah_signup" />
 
         <EditText
             android:id="@+id/emailEditTextSignup"
@@ -44,7 +31,7 @@
             android:inputType="textPersonName|textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appTitle2" />
+            app:layout_constraintTop_toBottomOf="@+id/miyahImage" />
 
         <EditText
             android:id="@+id/nameEditTextSignup"
@@ -106,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="84dp"
                 android:text="Client"
-                android:textColor="@color/dark_blue"
+                android:textColor="@color/blue"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordEditTextSignup" />
@@ -117,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="64dp"
                 android:text="Service Provider"
-                android:textColor="@color/dark_blue"
+                android:textColor="@color/blue"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordEditTextSignup" />
@@ -127,7 +114,7 @@
             android:id="@+id/signUpButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="96dp"
             android:text="@string/SignUp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -18,4 +18,5 @@ class ManualFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_manual, container, false)
     }
 
+
 }

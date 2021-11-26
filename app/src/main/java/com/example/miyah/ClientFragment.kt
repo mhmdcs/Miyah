@@ -180,7 +180,7 @@ class ClientFragment : Fragment() {
             val notificationChannel = NotificationChannel(
                 channelId,
                 channelName,
-                NotificationManager.IMPORTANCE_LOW
+                NotificationManager.IMPORTANCE_HIGH
             )
 
             notificationChannel.enableLights(true)
@@ -241,5 +241,6 @@ class ClientFragment : Fragment() {
         }
         return
     }
+
 
 }

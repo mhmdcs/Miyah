@@ -25,7 +25,6 @@ class MiyahAdapter(options: FirebaseRecyclerOptions<User>) :
         val phone = binding.clientPhone
         val locationImage = binding.clientLocationImage
         val loadingWheel = binding.statusLoadingWheel
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientsViewHolder {
@@ -53,5 +52,4 @@ class MiyahAdapter(options: FirebaseRecyclerOptions<User>) :
         })
         holder.loadingWheel.isVisible = false
     }
-
 }

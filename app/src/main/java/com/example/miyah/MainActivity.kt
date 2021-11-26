@@ -1,11 +1,13 @@
 package com.example.miyah
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -73,4 +75,9 @@ class MainActivity : AppCompatActivity() {
         //return navController.navigateUp()
     }
 
+//    override fun onDestroy() {
+//        applicationContext.cacheDir.deleteRecursively() //just clears cache upon closing the app
+////        applicationContext.dataDir.deleteRecursively() //clears data *and* cache
+//        super.onDestroy()
+//    }
 }
