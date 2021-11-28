@@ -16,7 +16,6 @@ import android.content.Intent
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 
-
 class MiyahAdapter(options: FirebaseRecyclerOptions<User>) :
     FirebaseRecyclerAdapter<User, MiyahAdapter.ClientsViewHolder>(options) {
 

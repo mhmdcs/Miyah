@@ -3,6 +3,7 @@ package com.example.miyah
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -24,6 +25,10 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        val TAG: String = MainActivity::class.java.simpleName
+    }
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
@@ -75,9 +80,8 @@ class MainActivity : AppCompatActivity() {
         //return navController.navigateUp()
     }
 
-//    override fun onDestroy() {
-//        applicationContext.cacheDir.deleteRecursively() //just clears cache upon closing the app
-////        applicationContext.dataDir.deleteRecursively() //clears data *and* cache
-//        super.onDestroy()
-//    }
+    override fun onDestroy() {
+        Log.i(TAG,"onDestroy called on MainActivity")
+        super.onDestroy()
+    }
 }

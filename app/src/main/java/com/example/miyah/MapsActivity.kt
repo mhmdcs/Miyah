@@ -3,9 +3,12 @@ package com.example.miyah
 import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -95,10 +98,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15f))
         googleMap.addMarker(markerOptions)
 
-        // Add a marker in Sydney and move the camera
-//        val sydney = LatLng(-34.0, 151.0)
-//        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
     override fun onRequestPermissionsResult(
@@ -116,5 +115,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
+        @RequiresApi(Build.VERSION_CODES.N)
+        override fun onDestroy() {
+        applicationContext.cacheDir.deleteRecursively() //clears only cache upon closing the app
+      //  applicationContext.dataDir.deleteRecursively() //clears data *and* cache
+        Log.i(TAG, "onDestroy called on MapActivity. cacheDir: "+applicationContext.cacheDir.deleteRecursively())
+            super.onDestroy()
+    }
 
 }

@@ -151,6 +151,11 @@ class SignupFragment : Fragment() {
                                         })
 
                                         Toast.makeText(activity,"Successful registration",Toast.LENGTH_SHORT).show()
+                                        binding.emailEditTextSignup.text.clear()
+                                        binding.nameEditTextSignup.text.clear()
+                                        binding.phoneEditTextSignup.text.clear()
+                                        binding.passwordEditTextSignup.text.clear()
+
                                         binding.statusLoadingWheel.isVisible = false
                                     } else {
                                         Toast.makeText(activity,"Failure to register",Toast.LENGTH_SHORT).show()

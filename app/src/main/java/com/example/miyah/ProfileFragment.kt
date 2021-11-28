@@ -12,8 +12,7 @@ import androidx.navigation.findNavController
 import com.example.miyah.databinding.FragmentProfileBinding
 import com.example.miyah.databinding.FragmentProviderBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 
 class ProfileFragment : Fragment() {
@@ -38,11 +37,29 @@ class ProfileFragment : Fragment() {
 
 
         binding.updateButton.setOnClickListener {
-            it.findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToLoginFragment())
             var name = binding.nameEditTextEditProfile.text.toString().trim()
-            var phone = binding.PhoneEditTextEditProfile.text.toString().trim()
-            updateProfile(name,phone)
-            FirebaseAuth.getInstance().signOut()
+            var phone = binding.phoneEditTextEditProfile.text.toString().trim()
+
+             if(name.isEmpty()){
+            binding.nameEditTextEditProfile.error = "Name is required!"
+            binding.nameEditTextEditProfile.requestFocus()
+        }
+
+        else if(phone.isEmpty()){
+            binding.phoneEditTextEditProfile.error = "Phone is required!"
+            binding.phoneEditTextEditProfile.requestFocus()
+        }
+
+        else if(phone.length<9){
+            binding.phoneEditTextEditProfile.error = "Phone must be over 9 numbers long!"
+            binding.phoneEditTextEditProfile.requestFocus()
+        }
+
+            else {
+                 updateProfile(name,phone)
+                 binding.nameEditTextEditProfile.text.clear()
+                 binding.phoneEditTextEditProfile.text.clear()
+             }
         }
 
         return binding.root
@@ -56,10 +73,12 @@ class ProfileFragment : Fragment() {
             "name" to name,
             "phone" to phone)
 
+
         databaseReference.updateChildren(user).addOnSuccessListener {
-            Toast.makeText(activity,"Successfully updated profile",Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,"Successfully updated profile",Toast.LENGTH_LONG).show()
+            FirebaseAuth.getInstance().signOut()
         }.addOnFailureListener {
-            Toast.makeText(activity,"Failed to update profile",Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,"Failed to update profile",Toast.LENGTH_LONG).show()
         }
     }
 

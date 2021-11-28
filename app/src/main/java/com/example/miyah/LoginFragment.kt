@@ -122,6 +122,9 @@ class LoginFragment : Fragment() {
                 })
 
                 Toast.makeText(activity,"Successfully logged in",Toast.LENGTH_SHORT).show()
+                binding.emailEditTextLogin.text.clear()
+                binding.passwordEditTextLogin.text.clear()
+
                 binding.statusLoadingWheel.isVisible = false
 
             } else {

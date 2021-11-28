@@ -63,8 +63,6 @@ class ClientFragment : Fragment() {
         binding.requestWaterRefillButton.setOnClickListener {
             val intent = Intent(this@ClientFragment.requireContext(), MapsActivity::class.java)
             startActivity(intent)
-
-       //     fetchLocation()
         }
 
         //define ValueEventListener to decide what happens when the data changes
@@ -73,11 +71,8 @@ class ClientFragment : Fragment() {
                 //onDataChange method is called every time the data is changed
                 override fun onDataChange(snapshot: DataSnapshot) { //fetch data using dataSnapshot object
 
-
-
                     var currentUser = FirebaseAuth.getInstance().uid
                     statusFb = snapshot.child("users/"+currentUser+"/espDistance").value.toString()
-                        //    statusFb = snapshot.child("distance").value.toString()
                         .toInt() //get the necessary value from the database and parse it to integer, this is  the actual value of the water level
                     statusDepth =
                         max - statusFb //"max" is the sensor value of the (empty) tank is, meaning it's level 0
@@ -211,35 +206,6 @@ class ClientFragment : Fragment() {
                 NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())}
         }
         return true
-    }
-
-    private fun fetchLocation() {
-        val task = fusedLocationProviderClient.lastLocation
-        var location: String
-
-        if(ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED && ActivityCompat
-                .checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(requireActivity(),arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101)
-            return
-        }
-        task.addOnSuccessListener {
-            if(it != null){
-                Toast.makeText(activity, "${it.latitude} ${it.longitude}", Toast.LENGTH_SHORT).show()
-                Log.i(TAG,"${it.latitude} ${it.longitude}")
-                location = it.latitude.toString()+","+it.longitude.toString()
-
-                var currentUser = FirebaseAuth.getInstance().uid
-                FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/location")
-                    .setValue(location)
-                FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
-                    .setValue("true")
-                Log.i(TAG,currentUser.toString())
-                Log.i(TAG,location)
-            }
-        }
-        return
     }
 
 
