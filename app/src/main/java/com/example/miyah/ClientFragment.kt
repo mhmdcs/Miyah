@@ -60,6 +60,9 @@ class ClientFragment : Fragment() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
 
+        Log.i(TAG,"Verify Firebase realtime database reference has been captured: "+database)
+
+
         binding.requestWaterRefillButton.setOnClickListener {
             val intent = Intent(this@ClientFragment.requireContext(), MapsActivity::class.java)
             startActivity(intent)
@@ -72,6 +75,9 @@ class ClientFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) { //fetch data using dataSnapshot object
 
                     var currentUser = FirebaseAuth.getInstance().uid
+
+                    Log.i(TAG,"Captured sign in user unique id: "+currentUser)
+
                     statusFb = snapshot.child("users/"+currentUser+"/espDistance").value.toString()
                         .toInt() //get the necessary value from the database and parse it to integer, this is  the actual value of the water level
                     statusDepth =

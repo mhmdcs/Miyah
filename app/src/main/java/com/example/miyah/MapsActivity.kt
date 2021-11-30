@@ -115,12 +115,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-        @RequiresApi(Build.VERSION_CODES.N)
         override fun onDestroy() {
-        applicationContext.cacheDir.deleteRecursively() //clears only cache upon closing the app
-      //  applicationContext.dataDir.deleteRecursively() //clears data *and* cache
-        Log.i(TAG, "onDestroy called on MapActivity. cacheDir: "+applicationContext.cacheDir.deleteRecursively())
+        applicationContext.cacheDir.deleteRecursively() //clears cache upon closing the app
+        Log.i(TAG, "onDestroy called on MapActivity. Deleted cache status: "+applicationContext.cacheDir.deleteRecursively())
             super.onDestroy()
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

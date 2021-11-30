@@ -106,7 +106,7 @@ class LoginFragment : Fragment() {
 
                 typeDatabaseReference.addValueEventListener(object: ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        Log.i(TAG,snapshot.value.toString())
+                        Log.i(TAG,"User type is: "+snapshot.value.toString())
 
                         if(snapshot.value.toString()=="Client"){
                             onClickView.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToClientFragment())
