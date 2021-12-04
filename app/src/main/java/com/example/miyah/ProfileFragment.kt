@@ -33,33 +33,28 @@ class ProfileFragment : Fragment() {
             inflater,
             R.layout.fragment_profile,
             container,
-            false)
+            false
+        )
 
 
         binding.updateButton.setOnClickListener {
             var name = binding.nameEditTextEditProfile.text.toString().trim()
             var phone = binding.phoneEditTextEditProfile.text.toString().trim()
 
-             if(name.isEmpty()){
-            binding.nameEditTextEditProfile.error = "Name is required!"
-            binding.nameEditTextEditProfile.requestFocus()
-        }
-
-        else if(phone.isEmpty()){
-            binding.phoneEditTextEditProfile.error = "Phone is required!"
-            binding.phoneEditTextEditProfile.requestFocus()
-        }
-
-        else if(phone.length<9){
-            binding.phoneEditTextEditProfile.error = "Phone must be over 9 numbers long!"
-            binding.phoneEditTextEditProfile.requestFocus()
-        }
-
-            else {
-                 updateProfile(name,phone)
-                 binding.nameEditTextEditProfile.text.clear()
-                 binding.phoneEditTextEditProfile.text.clear()
-             }
+            if (name.isEmpty()) {
+                binding.nameEditTextEditProfile.error = "Name is required!"
+                binding.nameEditTextEditProfile.requestFocus()
+            } else if (phone.isEmpty()) {
+                binding.phoneEditTextEditProfile.error = "Phone is required!"
+                binding.phoneEditTextEditProfile.requestFocus()
+            } else if (phone.length < 9) {
+                binding.phoneEditTextEditProfile.error = "Phone must be over 9 numbers long!"
+                binding.phoneEditTextEditProfile.requestFocus()
+            } else {
+                updateProfile(name, phone)
+                binding.nameEditTextEditProfile.text.clear()
+                binding.phoneEditTextEditProfile.text.clear()
+            }
         }
 
         return binding.root
@@ -68,17 +63,19 @@ class ProfileFragment : Fragment() {
     private fun updateProfile(name: String, phone: String) {
         val currentUser = FirebaseAuth.getInstance().uid.toString()
         Log.i(TAG, "Captured sign in user unique id: $currentUser")
-        val databaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser)
+        val databaseReference =
+            FirebaseDatabase.getInstance().getReference("users").child(currentUser)
         val user = mapOf(
             "name" to name,
-            "phone" to phone)
+            "phone" to phone
+        )
 
 
         databaseReference.updateChildren(user).addOnSuccessListener {
-            Toast.makeText(activity,"Successfully updated profile",Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, "Successfully updated profile", Toast.LENGTH_LONG).show()
             FirebaseAuth.getInstance().signOut()
         }.addOnFailureListener {
-            Toast.makeText(activity,"Failed to update profile",Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, "Failed to update profile", Toast.LENGTH_LONG).show()
         }
     }
 

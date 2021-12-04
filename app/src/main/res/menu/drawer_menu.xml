@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Manual" android:id="@+id/manualFragment" />
-    <item android:title="About" android:id="@+id/aboutFragment"/>
+    <item
+        android:id="@+id/manualFragment"
+        android:title="Manual" />
+    <item
+        android:id="@+id/aboutFragment"
+        android:title="About" />
 
 </menu>

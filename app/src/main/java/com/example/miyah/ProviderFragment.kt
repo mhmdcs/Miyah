@@ -32,7 +32,8 @@ class ProviderFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentProviderBinding
-  //  private lateinit var database: DatabaseReference
+
+    //  private lateinit var database: DatabaseReference
     private lateinit var miyahAdapter: MiyahAdapter
 
     override fun onCreateView(
@@ -45,13 +46,15 @@ class ProviderFragment : Fragment() {
             inflater,
             R.layout.fragment_provider,
             container,
-            false)
+            false
+        )
 
         val app = requireActivity().application //get the application context
-        val filterQuery = FirebaseDatabase.getInstance().getReference().child("users").orderByChild("requestStatus").equalTo("true")
+        val filterQuery = FirebaseDatabase.getInstance().getReference().child("users")
+            .orderByChild("requestStatus").equalTo("true")
 
         val clientsRecycler = binding.clientsRecycler
-       // clientsRecycler.setLayoutManager(LinearLayoutManager(requireContext())) //already set this in the xml layout
+        // clientsRecycler.setLayoutManager(LinearLayoutManager(requireContext())) //already set this in the xml layout
 
         //fetch data from firebase and into the recycler view
         //https://firebaseopensource.com/projects/firebase/firebaseui-android/database/readme/
@@ -88,14 +91,18 @@ class ProviderFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item.itemId){
-            R.id.profileFragment -> NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
-            R.id.loginFragment -> { FirebaseAuth.getInstance().signOut()
-                NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())}
+        when (item.itemId) {
+            R.id.profileFragment -> NavigationUI.onNavDestinationSelected(
+                item!!,
+                requireView().findNavController()
+            )
+            R.id.loginFragment -> {
+                FirebaseAuth.getInstance().signOut()
+                NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
             }
+        }
         return true
     }
 
 
-
-    }
+}

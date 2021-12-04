@@ -19,7 +19,8 @@ import androidx.core.view.isVisible
 class MiyahAdapter(options: FirebaseRecyclerOptions<User>) :
     FirebaseRecyclerAdapter<User, MiyahAdapter.ClientsViewHolder>(options) {
 
-    class ClientsViewHolder(private val binding: ClientItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ClientsViewHolder(private val binding: ClientItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         val name = binding.clientName
         val phone = binding.clientPhone
         val locationImage = binding.clientLocationImage
@@ -27,22 +28,24 @@ class MiyahAdapter(options: FirebaseRecyclerOptions<User>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientsViewHolder {
-        return ClientsViewHolder(ClientItemBinding
-            .inflate(LayoutInflater.from(parent.context), parent, false))
+        return ClientsViewHolder(
+            ClientItemBinding
+                .inflate(LayoutInflater.from(parent.context), parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: ClientsViewHolder, position: Int, model: User) {
         holder.loadingWheel.isVisible = true
-        holder.name.text = "Client Name: "+model.name
-        holder.phone.text = "Phone Number: "+model.phone
+        holder.name.text = "Client Name: " + model.name
+        holder.phone.text = "Phone Number: " + model.phone
 //        val uriString = "https://www.google.com/maps/search/?api=1&query="+model.location
 //        val locationUri = uriString.toUri()
 //        holder.locationImage.setImageURI(locationUri)
 
-        holder.locationImage.setOnClickListener(object: View.OnClickListener{
+        holder.locationImage.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val context = holder.locationImage.context
-                val url = "https://www.google.com/maps/search/?api=1&query="+model.location
+                val url = "https://www.google.com/maps/search/?api=1&query=" + model.location
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.data = Uri.parse(url)
                 context.startActivity(intent)

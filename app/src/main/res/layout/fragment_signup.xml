@@ -9,29 +9,15 @@
         android:layout_height="match_parent"
         tools:context=".SignupFragment">
 
-        <ImageView
-            android:id="@+id/miyahImage"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/emailEditTextSignup"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/miyah_signup" />
-
-        <EditText
-            android:id="@+id/emailEditTextSignup"
+        <Button
+            android:id="@+id/signUpButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:ems="10"
-            android:freezesText="false"
-            android:hint="@string/emailHint"
-            android:inputType="textPersonName|textEmailAddress"
+            android:layout_marginBottom="96dp"
+            android:text="@string/SignUp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/miyahImage" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/nameEditTextSignup"
@@ -73,6 +59,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phoneEditTextSignup" />
 
+        <EditText
+            android:id="@+id/emailEditTextSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:freezesText="false"
+            android:hint="@string/emailHint"
+            android:inputType="textPersonName|textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/miyahImage" />
+
+        <ImageView
+            android:id="@+id/miyahImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/emailEditTextSignup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/miyah_signup" />
+
+        <ProgressBar
+            android:id="@+id/status_loading_wheel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
         <RadioGroup
             android:id="@+id/radioGroupSignUp"
             android:layout_width="wrap_content"
@@ -109,30 +131,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordEditTextSignup" />
         </RadioGroup>
-
-        <Button
-            android:id="@+id/signUpButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="96dp"
-            android:text="@string/SignUp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-        <ProgressBar
-            android:id="@+id/status_loading_wheel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

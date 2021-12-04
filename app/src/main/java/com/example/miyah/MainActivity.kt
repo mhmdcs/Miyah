@@ -47,40 +47,40 @@ class MainActivity : AppCompatActivity() {
         //creating the Up button UI and linking it up with the Action Bar
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         //hook the navigation UI up to the navigation view by calling setupWithNavController
-        NavigationUI.setupWithNavController(binding.navView,navController)
+        NavigationUI.setupWithNavController(binding.navView, navController)
 
 
         //call addOnDestinationChangedListener with a lambda that sets the DrawerLockMode depending on what destination the app is navigating to.
         //When the id of the NavDestination matches the startDestination of the graph
         //this will unlock the drawerLayout; otherwise, it’ll lock and close the drawerLayout.
         //this lambda/anonymous function prevent nav gesture if not on start destination, it gets called EVERY TIME the destination changes, it gets back the destination
-        navController.addOnDestinationChangedListener(){
-                nc: NavController, nd: NavDestination, args: Bundle? ->
+        navController.addOnDestinationChangedListener() { nc: NavController, nd: NavDestination, args: Bundle? ->
 
-            if(nd.id == nc.graph.startDestination){
+            if (nd.id == nc.graph.startDestination) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            }
-            else{
+            } else {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
 
         }
 
 
-
     }
 
     // this is like setting an onClickListener to the Up button, without it, clicking it doesn't do anything
-    override fun onSupportNavigateUp(): Boolean{
+    override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.nav_host_fragment)
 
-        return NavigationUI.navigateUp(navController, appBarConfig) //use drawerLayout or appBarConfig here, both work same
+        return NavigationUI.navigateUp(
+            navController,
+            appBarConfig
+        ) //use drawerLayout or appBarConfig here, both work same
 
         //return navController.navigateUp()
     }
 
     override fun onDestroy() {
-        Log.i(TAG,"onDestroy called on MainActivity")
+        Log.i(TAG, "onDestroy called on MainActivity")
         super.onDestroy()
     }
 }

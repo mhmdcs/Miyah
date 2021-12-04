@@ -44,7 +44,8 @@ class SignupFragment : Fragment() {
             inflater,
             R.layout.fragment_signup,
             container,
-            false)
+            false
+        )
 
         //Initialize Firebase Auth
         auth = Firebase.auth
@@ -58,7 +59,8 @@ class SignupFragment : Fragment() {
     }
 
     private fun registerUser(onClickView: View) {
-        val email = binding.emailEditTextSignup.text.toString().trim() //good practice to trim whitespace
+        val email =
+            binding.emailEditTextSignup.text.toString().trim() //good practice to trim whitespace
         val name = binding.nameEditTextSignup.text.toString().trim()
         val phone = binding.phoneEditTextSignup.text.toString().trim()
         val password = binding.passwordEditTextSignup.text.toString().trim()
@@ -68,108 +70,123 @@ class SignupFragment : Fragment() {
 
         //perform validations
 
-         if(email.isEmpty()){
+        if (email.isEmpty()) {
             binding.emailEditTextSignup.error = "Email is required!"
             binding.emailEditTextSignup.requestFocus()
         }
 
         //check if user provided a valid email address pattern (i.e. it has @ symbol or .com)
         // ! in the if-condition is a negation, this means: if it does NOT match, then do the following
-        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.emailEditTextSignup.error = "Please provide valid email!"
             binding.emailEditTextSignup.requestFocus()
-        }
-
-       else if(name.isEmpty()){
+        } else if (name.isEmpty()) {
             binding.nameEditTextSignup.error = "Name is required!"
             binding.nameEditTextSignup.requestFocus()
-        }
-
-       else if(phone.isEmpty()){
+        } else if (phone.isEmpty()) {
             binding.phoneEditTextSignup.error = "Phone is required!"
             binding.phoneEditTextSignup.requestFocus()
-        }
-
-        else if(phone.length<9){
+        } else if (phone.length < 9) {
             binding.phoneEditTextSignup.error = "Phone must be over 9 numbers long!"
             binding.phoneEditTextSignup.requestFocus()
-        }
-
-        else if(password.isEmpty()){
+        } else if (password.isEmpty()) {
             binding.passwordEditTextSignup.error = "Password is required!"
             binding.passwordEditTextSignup.requestFocus()
         }
 
         //validate that the password is over 6 characters
         //because firebase does not accept password that is less than 6 characters
-        else if(password.length < 6){
+        else if (password.length < 6) {
             binding.passwordEditTextSignup.error = "Minimum password length is 6 characters!"
             binding.passwordEditTextSignup.requestFocus()
 
-        }
+        } else {
+            //write user data to the realtime database
 
-        else {
-        //write user data to the realtime database
+            binding.statusLoadingWheel.isVisible = true
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(object : OnCompleteListener<AuthResult> {
 
-        binding.statusLoadingWheel.isVisible = true
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(object : OnCompleteListener<AuthResult>{
+                    //check if task (user registration) has been completed and successful
+                    override fun onComplete(task: Task<AuthResult>) {
+                        if (task.isSuccessful) {
+                            val user = User(
+                                email,
+                                name,
+                                phone,
+                                userType(),
+                                location,
+                                espDistance,
+                                requestStatus
+                            ) //create an object of User
 
-                //check if task (user registration) has been completed and successful
-                override fun onComplete(task: Task<AuthResult>) {
-                    if(task.isSuccessful){
-                        val user = User(email, name, phone, userType(),location,espDistance,requestStatus) //create an object of User
+                            //send the user object to the realtime database by getting the current user ID and passing it the user object
+                            FirebaseAuth.getInstance().currentUser?.let {
+                                FirebaseDatabase.getInstance().getReference("users")
+                                    .child(it.uid)
+                                    .setValue(user).addOnCompleteListener {
+                                        //good practice to run addOnCompleteListener to check if the operation succeeded or failed
 
-                        //send the user object to the realtime database by getting the current user ID and passing it the user object
-                        FirebaseAuth.getInstance().currentUser?.let {
-                            FirebaseDatabase.getInstance().getReference("users")
-                                .child(it.uid)
-                                .setValue(user).addOnCompleteListener{
-                                    //good practice to run addOnCompleteListener to check if the operation succeeded or failed
+                                        if (it.isSuccessful) {
 
-                                    if(it.isSuccessful){
+                                            val currentUser =
+                                                FirebaseAuth.getInstance().uid.toString()
+                                            val typeDatabaseReference =
+                                                FirebaseDatabase.getInstance().getReference("users")
+                                                    .child(currentUser).child("type")
 
-                                        val currentUser = FirebaseAuth.getInstance().uid.toString()
-                                        val typeDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser).child("type")
+                                            typeDatabaseReference.addValueEventListener(object :
+                                                ValueEventListener {
+                                                override fun onDataChange(snapshot: DataSnapshot) {
+                                                    Log.i(
+                                                        TAG,
+                                                        "User type is: " + snapshot.value.toString()
+                                                    )
 
-                                        typeDatabaseReference.addValueEventListener(object:
-                                            ValueEventListener {
-                                            override fun onDataChange(snapshot: DataSnapshot) {
-                                                Log.i(TAG,"User type is: "+snapshot.value.toString())
+                                                    if (snapshot.value.toString() == "Client") {
+                                                        onClickView.findNavController()
+                                                            .navigate(SignupFragmentDirections.actionSignupFragmentToClientFragment())
+                                                    } else {
+                                                        onClickView.findNavController()
+                                                            .navigate(SignupFragmentDirections.actionSignupFragmentToProviderFragment())
+                                                    }
 
-                                                if(snapshot.value.toString()=="Client"){
-                                                    onClickView.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToClientFragment())
-                                                } else {
-                                                    onClickView.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToProviderFragment())
                                                 }
 
-                                            }
+                                                override fun onCancelled(error: DatabaseError) {
+                                                }
 
-                                            override fun onCancelled(error: DatabaseError) {
-                                            }
+                                            })
 
-                                        })
+                                            Toast.makeText(
+                                                activity,
+                                                "Successful registration",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                            binding.emailEditTextSignup.text.clear()
+                                            binding.nameEditTextSignup.text.clear()
+                                            binding.phoneEditTextSignup.text.clear()
+                                            binding.passwordEditTextSignup.text.clear()
 
-                                        Toast.makeText(activity,"Successful registration",Toast.LENGTH_SHORT).show()
-                                        binding.emailEditTextSignup.text.clear()
-                                        binding.nameEditTextSignup.text.clear()
-                                        binding.phoneEditTextSignup.text.clear()
-                                        binding.passwordEditTextSignup.text.clear()
-
-                                        binding.statusLoadingWheel.isVisible = false
-                                    } else {
-                                        Toast.makeText(activity,"Failure to register",Toast.LENGTH_SHORT).show()
-                                        binding.statusLoadingWheel.isVisible = false
+                                            binding.statusLoadingWheel.isVisible = false
+                                        } else {
+                                            Toast.makeText(
+                                                activity,
+                                                "Failure to register",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                            binding.statusLoadingWheel.isVisible = false
+                                        }
                                     }
-                                }
+                            }
+                        } else {
+                            Toast.makeText(activity, "Failure to register", Toast.LENGTH_SHORT)
+                                .show()
+                            binding.statusLoadingWheel.isGone
                         }
-                    } else {
-                        Toast.makeText(activity,"Failure to register",Toast.LENGTH_SHORT).show()
-                        binding.statusLoadingWheel.isGone
                     }
-                }
 
-            })
+                })
         }
 
     }
@@ -178,7 +195,7 @@ class SignupFragment : Fragment() {
         val radioGroup = binding.radioGroupSignUp
         val radioClient = binding.radioClient
         val radioProvider = binding.radioServiceProvider
-        return if (radioGroup.checkedRadioButtonId ==radioClient.id){
+        return if (radioGroup.checkedRadioButtonId == radioClient.id) {
             radioClient.text.toString()
         } else radioProvider.text.toString()
     }

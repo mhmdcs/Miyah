@@ -1,17 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="6dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardMaxElevation="6dp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
-        android:padding="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ProgressBar
+            android:id="@+id/status_loading_wheel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/client_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/client_name"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/client_location_image"
+            android:autoLink="phone"
+            android:gravity="left"
+            android:text=""
+            android:textColor="#00003f"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Client Phone" />
+
+        <!--android:autoLink="phone" might not work if number starts with 0 https://stackoverflow.com/questions/6497327/android-make-phone-numbers-clickable-autodetect-->
+        <TextView
+            android:id="@+id/client_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/client_location_image"
+            android:gravity="left"
+            android:text=""
+            android:textColor="#00003f"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Client Name" />
+
+        <!--or android:autoLink="map"? https://stackoverflow.com/questions/8767721/how-does-autolinkmap-work  -->
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/client_location_image"
@@ -23,52 +67,6 @@
             app:civ_border_color="@color/dark_blue"
             app:civ_border_width="2dp"
             tools:src="@drawable/location_icon" />
-
-        <TextView
-            android:id="@+id/client_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:textStyle="bold"
-            android:textColor="#00003f"
-            android:textSize="20sp"
-            android:text=""
-            android:layout_toRightOf="@+id/client_location_image"
-            tools:text="Client Name"
-            android:layout_marginLeft="10dp"
-            />
-
-        <!--android:autoLink="phone" might not work if number starts with 0 https://stackoverflow.com/questions/6497327/android-make-phone-numbers-clickable-autodetect-->
-        <TextView
-            android:id="@+id/client_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:textStyle="bold"
-            android:textColor="#00003f"
-            android:textSize="20sp"
-            android:text=""
-            android:autoLink="phone"
-            android:layout_toRightOf="@+id/client_location_image"
-            android:layout_below="@+id/client_name"
-            tools:text="Client Phone"
-            android:layout_marginLeft="10dp"
-            />
-
-        <!--or android:autoLink="map"? https://stackoverflow.com/questions/8767721/how-does-autolinkmap-work  -->
-
-
-        <ProgressBar
-            android:id="@+id/status_loading_wheel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:visibility="gone"
-            android:layout_centerInParent="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
 
     </RelativeLayout>

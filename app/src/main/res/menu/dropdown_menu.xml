@@ -3,12 +3,10 @@
 
     <item
         android:id="@+id/profileFragment"
-        android:title="Update Profile"
-        />
+        android:title="Update Profile" />
 
     <item
         android:id="@+id/loginFragment"
-        android:title="@string/Logout"
-         />
+        android:title="@string/Logout" />
 
 </menu>

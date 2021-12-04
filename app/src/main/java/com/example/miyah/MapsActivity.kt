@@ -31,8 +31,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val TAG: String = MapsActivity::class.java.simpleName
     }
 
-     var currentLocation: Location? = null
-     var fusedLocationProviderClient: FusedLocationProviderClient? = null
+    var currentLocation: Location? = null
+    var fusedLocationProviderClient: FusedLocationProviderClient? = null
     private lateinit var binding: ActivityMapsBinding
 
     private val REQUEST_CODE = 101
@@ -49,35 +49,41 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun fetchLocation() {
 
-        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED && ActivityCompat
-                .checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED)
-            {
-            ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE)
+                .checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_CODE
+            )
             return
-             }
+        }
 
         val task = fusedLocationProviderClient!!.lastLocation
         task.addOnSuccessListener { location ->
-            if(location != null){
+            if (location != null) {
                 currentLocation = location
-                val supportMapFragment = (supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?)
-               supportMapFragment!!.getMapAsync(this@MapsActivity)
-            // Toast.makeText(this, "${location.latitude} ${location.longitude}", Toast.LENGTH_LONG)
+                val supportMapFragment =
+                    (supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?)
+                supportMapFragment!!.getMapAsync(this@MapsActivity)
+                // Toast.makeText(this, "${location.latitude} ${location.longitude}", Toast.LENGTH_LONG)
 
-                val locationString = location.latitude.toString()+","+location.longitude.toString()
+                val locationString =
+                    location.latitude.toString() + "," + location.longitude.toString()
 
                 val currentUser = FirebaseAuth.getInstance().uid
                 FirebaseDatabase.getInstance().getReference().child("users/$currentUser/location")
                     .setValue(locationString)
-                FirebaseDatabase.getInstance().getReference().child("users/$currentUser/requestStatus")
+                FirebaseDatabase.getInstance().getReference()
+                    .child("users/$currentUser/requestStatus")
                     .setValue("true")
 
             }
         }
     }
-
 
 
     /**
@@ -94,7 +100,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val latLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
         val markerOptions = MarkerOptions().position(latLng).title("I Am Here!")
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15f))
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
         googleMap.addMarker(markerOptions)
 
     }
@@ -104,9 +110,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        when(requestCode){
+        when (requestCode) {
             REQUEST_CODE -> {
-                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     fetchLocation()
                 }
             }
@@ -114,10 +120,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-        override fun onDestroy() {
+    override fun onDestroy() {
         applicationContext.cacheDir.deleteRecursively() //clears cache upon closing the app
-        Log.i(TAG, "onDestroy called on MapActivity. Deleted cache status: "+applicationContext.cacheDir.deleteRecursively())
-            super.onDestroy()
+        Log.i(
+            TAG,
+            "onDestroy called on MapActivity. Deleted cache status: " + applicationContext.cacheDir.deleteRecursively()
+        )
+        super.onDestroy()
     }
 
 }

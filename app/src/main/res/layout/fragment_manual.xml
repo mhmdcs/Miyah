@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ManualFragment">
 
- <LinearLayout
-     android:orientation="vertical"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
-     <ImageView
-         android:id="@+id/miyahImage"
-         android:layout_width="match_parent"
-         android:layout_height="220dp"
-         android:layout_marginTop="24dp"
-         android:layout_marginBottom="100dp"
-         app:srcCompat="@drawable/miyah_manual" />
+        <ImageView
+            android:id="@+id/miyahImage"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="100dp"
+            app:srcCompat="@drawable/miyah_manual" />
 
 
-     <TextView
-         android:id="@+id/manualtext"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginBottom="10dp"
-         android:gravity="center"
-         android:justificationMode="inter_word"
-         android:paddingLeft="9dp"
-         android:paddingRight="9dp"
-         android:text="@string/manual_text"
-         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-         android:textColor="#00003f"/>
+        <TextView
+            android:id="@+id/manualtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:justificationMode="inter_word"
+            android:paddingLeft="9dp"
+            android:paddingRight="9dp"
+            android:text="@string/manual_text"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#00003f" />
 
- </LinearLayout>
+    </LinearLayout>
 
 </layout>
