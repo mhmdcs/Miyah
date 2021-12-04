@@ -26,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase
 //Map Activity
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 //google maps implementation
-//https://www.youtube.com/watch?v=DUqkeQlZig8&ab_channel=CodingwithDev&loop=0
 
     companion object {
         val TAG: String = MapsActivity::class.java.simpleName
@@ -36,7 +35,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      var fusedLocationProviderClient: FusedLocationProviderClient? = null
     private lateinit var binding: ActivityMapsBinding
 
-    val REQUEST_CODE = 101
+    private val REQUEST_CODE = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,12 +66,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                supportMapFragment!!.getMapAsync(this@MapsActivity)
             // Toast.makeText(this, "${location.latitude} ${location.longitude}", Toast.LENGTH_LONG)
 
-                var locationString = location.latitude.toString()+","+location.longitude.toString()
+                val locationString = location.latitude.toString()+","+location.longitude.toString()
 
-                var currentUser = FirebaseAuth.getInstance().uid
-                FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/location")
+                val currentUser = FirebaseAuth.getInstance().uid
+                FirebaseDatabase.getInstance().getReference().child("users/$currentUser/location")
                     .setValue(locationString)
-                FirebaseDatabase.getInstance().getReference().child("users/"+currentUser+"/requestStatus")
+                FirebaseDatabase.getInstance().getReference().child("users/$currentUser/requestStatus")
                     .setValue("true")
 
             }
@@ -107,7 +106,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     ) {
         when(requestCode){
             REQUEST_CODE -> {
-                if(grantResults.size>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     fetchLocation()
                 }
             }

@@ -129,8 +129,8 @@ class SignupFragment : Fragment() {
 
                                     if(it.isSuccessful){
 
-                                        var currentUser = FirebaseAuth.getInstance().uid.toString()
-                                        var typeDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser).child("type")
+                                        val currentUser = FirebaseAuth.getInstance().uid.toString()
+                                        val typeDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser).child("type")
 
                                         typeDatabaseReference.addValueEventListener(object:
                                             ValueEventListener {
@@ -178,10 +178,9 @@ class SignupFragment : Fragment() {
         val radioGroup = binding.radioGroupSignUp
         val radioClient = binding.radioClient
         val radioProvider = binding.radioServiceProvider
-        if (radioGroup.checkedRadioButtonId ==radioClient.id){
-            return radioClient.text.toString()
-        }
-        else return radioProvider.text.toString()
+        return if (radioGroup.checkedRadioButtonId ==radioClient.id){
+            radioClient.text.toString()
+        } else radioProvider.text.toString()
     }
 
 

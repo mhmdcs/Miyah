@@ -65,8 +65,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-//Having listeners like this makes it powerful to do lots of cool stuff when the user navigates,
-// and keeps the code in a single place in the app.
+
 
 
     }

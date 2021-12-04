@@ -48,7 +48,7 @@ class ProviderFragment : Fragment() {
             false)
 
         val app = requireActivity().application //get the application context
-        var filterQuery = FirebaseDatabase.getInstance().getReference().child("users").orderByChild("requestStatus").equalTo("true")
+        val filterQuery = FirebaseDatabase.getInstance().getReference().child("users").orderByChild("requestStatus").equalTo("true")
 
         val clientsRecycler = binding.clientsRecycler
        // clientsRecycler.setLayoutManager(LinearLayoutManager(requireContext())) //already set this in the xml layout
@@ -68,6 +68,7 @@ class ProviderFragment : Fragment() {
         return binding.root
     }
 
+    //https://stackoverflow.com/a/47228433 this is needed to make the adapter work
     override fun onStart() {
         super.onStart()
         miyahAdapter.startListening()

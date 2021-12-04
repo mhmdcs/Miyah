@@ -101,8 +101,8 @@ class LoginFragment : Fragment() {
                 //good practice to run addOnCompleteListener to check if the task completed
             if(it.isSuccessful){
 
-                var currentUser = FirebaseAuth.getInstance().uid.toString()
-                var typeDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser).child("type")
+                val currentUser = FirebaseAuth.getInstance().uid.toString()
+                val typeDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser).child("type")
 
                 typeDatabaseReference.addValueEventListener(object: ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {

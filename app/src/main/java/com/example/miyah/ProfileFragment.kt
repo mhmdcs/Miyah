@@ -66,10 +66,10 @@ class ProfileFragment : Fragment() {
     }
 
     private fun updateProfile(name: String, phone: String) {
-        var currentUser = FirebaseAuth.getInstance().uid.toString()
-        Log.i(TAG,"Captured sign in user unique id: "+ currentUser)
-        var databaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser)
-        var user = mapOf(
+        val currentUser = FirebaseAuth.getInstance().uid.toString()
+        Log.i(TAG, "Captured sign in user unique id: $currentUser")
+        val databaseReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser)
+        val user = mapOf(
             "name" to name,
             "phone" to phone)
 

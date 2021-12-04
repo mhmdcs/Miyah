@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.core.app.NotificationCompat
 import com.example.miyah.R
 
-private val NOTIFICATION_ID = 0
+private const val NOTIFICATION_ID = 0
 
 
 //kotlin extension function
