@@ -1,5 +1,6 @@
 package com.example.miyah
 
+import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Intent
@@ -44,13 +45,12 @@ class ClientFragment : Fragment() {
             false
         )
 
-        var distance: Int //espDistance in Firebase
         val app = requireActivity().application //get the application context
 
         database =
             FirebaseDatabase.getInstance().reference //instance of the firebase database reference
         val sensorData: TextView = binding.textWaterPercentage
-        val imgDat: ImageView = binding.imgWaterLevel
+        val imgData: ImageView = binding.imgWaterLevel
 
         Log.i(TAG, "Verify Firebase realtime database reference has been captured: $database")
 
@@ -58,6 +58,21 @@ class ClientFragment : Fragment() {
             val intent = Intent(this@ClientFragment.requireContext(), MapsActivity::class.java)
             startActivity(intent)
         }
+
+        displayWaterLevel(sensorData, imgData, app)
+
+        createChannel(
+            getString(R.string.water_tank_notification_channel_id),
+            getString(R.string.water_tank_notification_channel_name)
+        )
+
+        setHasOptionsMenu(true)
+
+        return binding.root
+    }
+
+    private fun displayWaterLevel(sensorData: TextView, imgData: ImageView, app: Application) {
+
 
         //define ValueEventListener to decide what happens when the data changes
         database.addValueEventListener(object : ValueEventListener {
@@ -69,80 +84,80 @@ class ClientFragment : Fragment() {
 
                 Log.i(TAG, "Captured sign in user unique id: $currentUser")
 
-                distance = snapshot.child("users/$currentUser/espDistance").value.toString()
+                val distance = snapshot.child("users/$currentUser/espDistance").value.toString()//espDistance in Firebase
                     .toInt() //get the distance value in cm from the database and parse it to String
                 sensorData.text = "100%"
 
                 //Using Kotlin's when statement. Similar to if-else, but more idiomatic.
                 when {
                     distance == 2 -> {
-                        imgDat.setImageResource(R.drawable.i100)
+                        imgData.setImageResource(R.drawable.i100)
                         sensorData.text = "100%"
                         binding.requestWaterRefillButton.isVisible = false
                         FirebaseDatabase.getInstance().reference.child("users/$currentUser/requestStatus")
                             .setValue("false")
                     }
                     distance == 3 -> {
-                        imgDat.setImageResource(R.drawable.i100)
+                        imgData.setImageResource(R.drawable.i100)
                         sensorData.text = "100%"
                         binding.requestWaterRefillButton.isVisible = false
                         FirebaseDatabase.getInstance().reference.child("users/$currentUser/requestStatus")
                             .setValue("false")
                     }
                     distance == 4 -> {
-                        imgDat.setImageResource(R.drawable.i93)
+                        imgData.setImageResource(R.drawable.i93)
                         sensorData.text = "93%"
                         binding.requestWaterRefillButton.isVisible = false
                         FirebaseDatabase.getInstance().reference.child("users/$currentUser/requestStatus")
                             .setValue("false")
                     }
                     distance == 5 -> {
-                        imgDat.setImageResource(R.drawable.i86)
+                        imgData.setImageResource(R.drawable.i86)
                         sensorData.text = "86%"
                         binding.requestWaterRefillButton.isVisible = false
                         FirebaseDatabase.getInstance().reference.child("users/$currentUser/requestStatus")
                             .setValue("false")
                     }
                     distance == 6 -> {
-                        imgDat.setImageResource(R.drawable.i79)
+                        imgData.setImageResource(R.drawable.i79)
                         sensorData.text = "79%"
                         binding.requestWaterRefillButton.isVisible = false
                         FirebaseDatabase.getInstance().reference.child("users/$currentUser/requestStatus")
                             .setValue("false")
                     }
                     distance == 7 -> {
-                        imgDat.setImageResource(R.drawable.i72)
+                        imgData.setImageResource(R.drawable.i72)
                         sensorData.text = "72%"
                         binding.requestWaterRefillButton.isVisible = false
                         FirebaseDatabase.getInstance().reference.child("users/$currentUser/requestStatus")
                             .setValue("false")
                     }
                     distance == 8 -> {
-                        imgDat.setImageResource(R.drawable.i65)
+                        imgData.setImageResource(R.drawable.i65)
                         sensorData.text = "65%"
                         binding.requestWaterRefillButton.isVisible = false
                         FirebaseDatabase.getInstance().reference.child("users/$currentUser/requestStatus")
                             .setValue("false")
                     }
                     distance == 9 -> {
-                        imgDat.setImageResource(R.drawable.i58)
+                        imgData.setImageResource(R.drawable.i58)
                         sensorData.text = "58%"
                         binding.requestWaterRefillButton.isVisible = false
                         FirebaseDatabase.getInstance().reference.child("users/$currentUser/requestStatus")
                             .setValue("false")
                     }
                     distance == 10 -> {
-                        imgDat.setImageResource(R.drawable.i51)
+                        imgData.setImageResource(R.drawable.i51)
                         sensorData.text = "51%"
                         binding.requestWaterRefillButton.isVisible = true
                     }
                     distance == 11 -> {
-                        imgDat.setImageResource(R.drawable.i44)
+                        imgData.setImageResource(R.drawable.i44)
                         sensorData.text = "44%"
                         binding.requestWaterRefillButton.isVisible = true
                     }
                     distance == 12 -> {
-                        imgDat.setImageResource(R.drawable.i37)
+                        imgData.setImageResource(R.drawable.i37)
                         sensorData.text = "37%"
                         binding.requestWaterRefillButton.isVisible = true
                         val notificationManager = ContextCompat.getSystemService(
@@ -154,22 +169,22 @@ class ClientFragment : Fragment() {
                         )
                     }
                     distance == 13 -> {
-                        imgDat.setImageResource(R.drawable.i30)
+                        imgData.setImageResource(R.drawable.i30)
                         sensorData.text = "30%"
                         binding.requestWaterRefillButton.isVisible = true
                     }
                     distance == 14 -> {
-                        imgDat.setImageResource(R.drawable.i25)
+                        imgData.setImageResource(R.drawable.i25)
                         sensorData.text = "25%"
                         binding.requestWaterRefillButton.isVisible = true
                     }
                     distance == 15 -> {
-                        imgDat.setImageResource(R.drawable.i20)
+                        imgData.setImageResource(R.drawable.i20)
                         sensorData.text = "20%"
                         binding.requestWaterRefillButton.isVisible = true
                     }
                     distance == 16 -> {
-                        imgDat.setImageResource(R.drawable.i15)
+                        imgData.setImageResource(R.drawable.i15)
                         sensorData.text = "15%"
                         binding.requestWaterRefillButton.isVisible = true
                         val notificationManager = ContextCompat.getSystemService(
@@ -181,17 +196,17 @@ class ClientFragment : Fragment() {
                         )
                     }
                     distance == 17 -> {
-                        imgDat.setImageResource(R.drawable.i10)
+                        imgData.setImageResource(R.drawable.i10)
                         sensorData.text = "10%"
                         binding.requestWaterRefillButton.isVisible = true
                     }
                     distance == 18 -> {
-                        imgDat.setImageResource(R.drawable.i0)
+                        imgData.setImageResource(R.drawable.i0)
                         sensorData.text = "0%"
                         binding.requestWaterRefillButton.isVisible = true
                     }
                     else -> {
-                        imgDat.setImageResource(R.drawable.i0)
+                        imgData.setImageResource(R.drawable.i0)
                         binding.requestWaterRefillButton.isVisible = true
                         sensorData.text = "0%"
                     }
@@ -199,22 +214,12 @@ class ClientFragment : Fragment() {
 
             }// end of onDataChange method
 
-            //onCancelled method is called if reading from the database is canceled.
-            //For example, a read can be canceled if the client doesn't have permission to read from a Firebase database location
+            //onCancelled method is called if reading from the database is canceled due to lacking permissions
             //Optional to print errors here
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.i(TAG, "Database connection error")
             }// end of onCancelled method
         })
-
-        createChannel(
-            getString(R.string.water_tank_notification_channel_id),
-            getString(R.string.water_tank_notification_channel_name)
-        )
-
-        setHasOptionsMenu(true)
-
-        return binding.root
     }
 
 
