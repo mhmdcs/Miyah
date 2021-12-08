@@ -53,6 +53,27 @@ class LoginFragment : Fragment() {
                 .navigate(LoginFragmentDirections.actionLoginFragmentToSignupFragment())
         }
 
+        binding.forgotPassword.setOnClickListener{
+            val email = binding.emailEditTextLogin.text.toString().trim()
+            if (email.isEmpty()) {
+                binding.emailEditTextLogin.error = "Email is required to reset password!"
+                binding.emailEditTextLogin.requestFocus()
+            }
+            else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.emailEditTextLogin.error = "Please provide valid email to reset password!"
+                binding.emailEditTextLogin.requestFocus()
+            } else {
+                auth.sendPasswordResetEmail(email).addOnCompleteListener(){
+                    if(it.isSuccessful){
+                        Toast.makeText(activity, "Successfully sent email to reset password", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(activity, "Could not send email to reset password", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+            }
+        }
+
         binding.signInButton.setOnClickListener { view: View ->
             signingIn(view)
         }
@@ -64,8 +85,7 @@ class LoginFragment : Fragment() {
 
     private fun signingIn(onClickView: View) {
 
-        val email =
-            binding.emailEditTextLogin.text.toString().trim() //good practice to trim whitespace
+        val email = binding.emailEditTextLogin.text.toString().trim() //good practice to trim whitespace
         val password = binding.passwordEditTextLogin.text.toString().trim()
 
 
