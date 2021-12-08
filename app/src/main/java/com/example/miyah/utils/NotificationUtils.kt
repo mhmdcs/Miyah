@@ -8,7 +8,7 @@ import com.example.miyah.R
 private const val NOTIFICATION_ID = 0
 
 
-//kotlin extension function
+//kotlin extension function to send notifications
 fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context) {
 
     val builder = NotificationCompat.Builder(

@@ -72,7 +72,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     (supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?)
                 supportMapFragment!!.getMapAsync(this@MapsActivity)
                 // Toast.makeText(this, "${location.latitude} ${location.longitude}", Toast.LENGTH_LONG)
-                Toast.makeText(this, "Request Successful", Toast.LENGTH_LONG)
+                Toast.makeText(this, "Request Successful", Toast.LENGTH_LONG).show()
 
                 val locationString =
                     location.latitude.toString() + "," + location.longitude.toString()
