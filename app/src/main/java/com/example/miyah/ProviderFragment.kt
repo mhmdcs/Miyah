@@ -63,8 +63,8 @@ class ProviderFragment : Fragment() {
             .setQuery(filterQuery, User::class.java)
             .build()
 
-        miyahAdapter = MiyahAdapter(options)
-        clientsRecycler.adapter = miyahAdapter
+        miyahAdapter = MiyahAdapter(options);
+        clientsRecycler.adapter = miyahAdapter;
 
         setHasOptionsMenu(true)
 
@@ -75,7 +75,6 @@ class ProviderFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         miyahAdapter.startListening()
-
     }
 
     override fun onStop() {

@@ -27,9 +27,10 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        val TAG: String = MainActivity::class.java.simpleName
+        val TAG: String = MainActivity::class.java.simpleName  //    var TAG = "MainActivity"
     }
 
+    //lateinit late initialization
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfig: AppBarConfiguration

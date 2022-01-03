@@ -1,6 +1,5 @@
 package com.example.miyah
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -9,12 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.miyah.databinding.FragmentLoginBinding
-import com.example.miyah.databinding.FragmentSignupBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -32,18 +29,10 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var auth: FirebaseAuth;
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         //initialize the data binding variable
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_login,
-            container,
-            false
-        )
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
         // Initialize Firebase Auth
         auth = Firebase.auth
@@ -78,7 +67,6 @@ class LoginFragment : Fragment() {
         }
 
 
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -140,8 +128,7 @@ class LoginFragment : Fragment() {
 
                             }
 
-                            override fun onCancelled(error: DatabaseError) {
-                            }
+                            override fun onCancelled(error: DatabaseError) {}
 
                         })
 

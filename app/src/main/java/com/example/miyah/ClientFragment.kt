@@ -26,7 +26,7 @@ import com.google.firebase.database.*
 class ClientFragment : Fragment() {
 
     companion object {
-        val TAG: String = ClientFragment::class.java.simpleName
+        val TAG: String = ClientFragment::class.java.simpleName //    var TAG = "ClientFragment"
     }
 
     private lateinit var binding: FragmentClientBinding
@@ -45,12 +45,16 @@ class ClientFragment : Fragment() {
             false
         )
 
+        binding.depthLevelButton.setOnClickListener {
+            var depthLevel = binding.depthLevel.text.toString()
+            database.child("users/TEZLRyoqtwUuJHgRx4IhBWzFbC42/depthLevel")
+        }
+
         val app = requireActivity().application //get the application context
 
-        database =
-            FirebaseDatabase.getInstance().reference //instance of the firebase database reference
-        val sensorData: TextView = binding.textWaterPercentage
-        val imgData: ImageView = binding.imgWaterLevel
+        database = FirebaseDatabase.getInstance().reference //instance of the firebase database reference
+        val sensorData = binding.textWaterPercentage
+        val imgData = binding.imgWaterLevel
 
         Log.i(TAG, "Verify Firebase realtime database reference has been captured: $database")
 
@@ -70,6 +74,8 @@ class ClientFragment : Fragment() {
 
         return binding.root
     }
+
+
 
     private fun displayWaterLevel(sensorData: TextView, imgData: ImageView, app: Application) {
 
@@ -160,9 +166,7 @@ class ClientFragment : Fragment() {
                         imgData.setImageResource(R.drawable.i37)
                         sensorData.text = "37%"
                         binding.requestWaterRefillButton.isVisible = true
-                        val notificationManager = ContextCompat.getSystemService(
-                            app, NotificationManager::class.java
-                        ) as NotificationManager
+                        val notificationManager = ContextCompat.getSystemService(app, NotificationManager::class.java) as NotificationManager
                         notificationManager.sendNotification(
                             app.getString(R.string.notification_text),
                             app
@@ -177,6 +181,13 @@ class ClientFragment : Fragment() {
                         imgData.setImageResource(R.drawable.i25)
                         sensorData.text = "25%"
                         binding.requestWaterRefillButton.isVisible = true
+                        val notificationManager = ContextCompat.getSystemService(
+                            app, NotificationManager::class.java
+                        ) as NotificationManager
+                        notificationManager.sendNotification(
+                            app.getString(R.string.notification_text),
+                            app
+                        )
                     }
                     distance == 15 -> {
                         imgData.setImageResource(R.drawable.i20)
@@ -254,12 +265,12 @@ class ClientFragment : Fragment() {
 
         when (item.itemId) {
             R.id.profileFragment -> NavigationUI.onNavDestinationSelected(
-                item!!,
+                item,
                 requireView().findNavController()
             )
             R.id.loginFragment -> {
                 FirebaseAuth.getInstance().signOut()
-                NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
+                NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
             }
         }
         return true

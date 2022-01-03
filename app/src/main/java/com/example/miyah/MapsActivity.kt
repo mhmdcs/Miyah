@@ -30,8 +30,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 //google maps implementation
 
     companion object {
-        val TAG: String = MapsActivity::class.java.simpleName
+        val TAG: String = MapsActivity::class.java.simpleName //    var TAG = "MapsActivity"
     }
+
 
     var currentLocation: Location? = null
     var fusedLocationProviderClient: FusedLocationProviderClient? = null
@@ -99,13 +100,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
-
         val latLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
         val markerOptions = MarkerOptions().position(latLng).title("I Am Here!")
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
         googleMap.addMarker(markerOptions)
-
     }
 
     override fun onRequestPermissionsResult(

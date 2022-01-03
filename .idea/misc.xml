@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/font/open_sans_light.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_provider.xml" value="0.1" />
         <entry key="app/src/main/res/layout/client_item.xml" value="0.25" />
@@ -13,12 +14,13 @@
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.16750756811301715" />
         <entry key="app/src/main/res/layout/fragment_client.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_manual.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_manual.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_provider.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_provider.xml" value="0.12902027464368696" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_zg.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/user_item.xml" value="0.25" />
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.346875" />
         <entry key="app/src/main/res/menu/dropdown_menu.xml" value="0.1" />
