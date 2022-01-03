@@ -5,17 +5,17 @@ Miyah, the Android application for the Smart Water Level Detecting System IoT gr
 
 ## Screenshots
 
-<img src="img1.png" height="450" alt="1st Screen">
+<img src="img1.jpg" height="450" alt="1st Screen">
 
-<img src="img2.png" height="450" alt="2nd Screen">
+<img src="img2.jpg" height="450" alt="2nd Screen">
 
-<img src="img3.png" height="450" alt="3rd Screen">
+<img src="img3.jpg" height="450" alt="3rd Screen">
 
-<img src="img4.png" height="450" alt="4th Screen">
+<img src="img4.jpg" height="450" alt="4th Screen">
 
-<img src="img5.png" height="450" alt="5th Screen">
+<img src="img5.jpg" height="450" alt="5th Screen">
 
-<img src="img6.png" height="450" alt="6th Screen">
+<img src="img6.jpg" height="450" alt="6th Screen">
 
-<img src="img7.png" height="450" alt="7th Screen">
+<img src="img7.jpg" height="450" alt="7th Screen">
 
